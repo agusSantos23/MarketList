@@ -1,0 +1,19 @@
+{
+  "lobby":{
+    "lobby-buttons":{
+      "register": "Registrarse",
+      "login": "Iniciar Sesion"
+    },
+    "arrowDown": "Flecha Abajo",
+    "information":{
+      "paragraphOne": "La solución perfecta para llevar un registro avanzado de precios en diversos mercados. Nuestra plataforma intuitiva permite a los usuarios crear y gestionar notas detalladas",
+      "characteristics": {
+        "One": "Interfaz Amigable",
+        "Two": "Notas Avanzadas",
+        "Three": "Sincronización"
+      },
+      "paragraphTwo": "Crea y personaliza tu lista con productos y precios, asegurando que nunca olvides lo que necesitas y manteniendo un control total sobre tus gastos en cada mercado."
+    }
+  }
+  
+}

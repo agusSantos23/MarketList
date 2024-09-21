@@ -1,0 +1,19 @@
+{
+  "lobby":{
+    "lobby-buttons":{
+      "register": "Register",
+      "login": "Login"
+    },
+    "arrowDown": "ArrowDown",
+    "information":{
+      "paragraphOne": "The perfect solution for keeping an advanced record of prices in various markets. Our intuitive platform allows users to create and manage detailed notes.",
+      "characteristics": {
+        "One": "UserFriendly Interface",
+        "Two": "Advanced Notes",
+        "Three": "Cloud Sync"
+      },
+      "paragraphTwo": "Create and customize your list with products and prices, ensuring you never forget what you need and keeping complete control over your expenses in each market."
+    }
+  }
+  
+}
