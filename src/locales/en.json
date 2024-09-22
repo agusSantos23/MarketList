@@ -1,5 +1,5 @@
 {
-  "lobby":{
+  "home":{
     "lobby-buttons":{
       "register": "Register",
       "login": "Login"
@@ -21,6 +21,7 @@
       }
     }
   },
+  
   "footer": "Website created by AguSSantos"
   
 }

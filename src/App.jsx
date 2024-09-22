@@ -1,94 +1,19 @@
-
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './components/LanguageSwitcher.jsx';
-
-import SS from './assets/svg/logoSS.svg'
-import arrowUP from './assets/svg/arrowUP.svg'
-
-import cloudSync from './assets/svg/characteristics/cloudSync.svg'
-import pen from './assets/svg/characteristics/penNotes.svg'
-import userFriendly from './assets/svg/characteristics/userFriendly.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from "./Pages/Home.jsx";
+import Auth from './Pages/Auth.jsx';
 
 
 function App() {
-
-  const { t } = useTranslation()
-
   return (
-    <main className=' bg-myWhite'>
-      <header className='flex justify-between items-center p-5'>
-        <LanguageSwitcher />
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/auth' element={<Auth />} />
+        <Route path='/terms-and-conditions' element={""} />
 
-        <a href="https://www.agussantos.es/" target='_blank'>
-          <img 
-            className='w-5 hover:scale-125 duration-75 ease-in' 
-            src={SS} 
-            alt="aguSSantos" 
-          />
-        </a>
-      </header>
-      <article className='h-dvh flex flex-col gap-10 justify-evenly items-center'>
-
-        <section className='flex flex-col items-center'>
-          <h1 className='text-2xl mb-10 font-lilita text-myBlack'>MarketList</h1>
-
-          <div className='w-20 h-20 bg-green-400 rounded-full'></div>
-        </section>
-        
-
-        <section className='flex gap-5'>
-          <button  className="bg-myWhite font-quicksand py-2 px-4 border border-green-500 rounded shadow-md hover:shadow-green-500 duration-200">{t('lobby.lobby-buttons.register')}</button>
-          <button  className="bg-myWhite font-quicksand py-2 px-4 border border-green-700 rounded shadow-md hover:shadow-green-700 duration-200">{t('lobby.lobby-buttons.login')}</button>
-        </section>
-
-        <a href="#info">
-          <img 
-            className='w-10 rotate-180 animate-fall' 
-            src={arrowUP} 
-            alt={t("lobby.arrowDown")} 
-          />
-        </a>
-
-      </article>
-
-      <article id='info' className='h-lvh flex flex-col justify-center gap-2 items-center text-center'>
-
-        <section className='mx-6'>
-          <h3 className='text-xl text-myBlack mb-3 font-lilita'>{t("lobby.information.paragraphOne.h3")}</h3>
-          <p className='font-quicksand'>{t("lobby.information.paragraphOne.p")}</p>
-        </section>
-
-        <section>
-
-          <div className="w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-yellow border-yellow-400 hover:scale-110 duration-300 ease-in-out">
-            <img className="w-10" src={userFriendly} alt="" />
-            <h3 className="font-bold font-quicksand">{t("lobby.information.characteristics.One")}</h3>
-          </div>
-          
-          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-violet border-violet-400 hover:scale-110 duration-300 ease-in-out'>
-            <img className='w-10' src={pen} alt="" />
-            <h3 className='font-bold font-quicksand'>{t("lobby.information.characteristics.Two")}</h3>
-          </div>
-
-          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-green border-green-400 hover:scale-110 duration-300 ease-in-out'>
-            <img className='w-10' src={cloudSync} alt="" />
-            <h3 className='font-bold font-quicksand'>{t("lobby.information.characteristics.Three")}</h3>
-          </div>
-        </section>
-
-
-        <section className='mx-5'>
-          <h3 className='text-xl text-myBlack mb-3 font-lilita'>{t("lobby.information.paragraphTwo.h3")}</h3>
-          <p className='font-quicksand'>{t("lobby.information.paragraphTwo.p")}</p>
-        </section>
-
-      </article>
-      <footer className='bg-myBlack text-myWhite p-2 text-center font-lilita'>
-        <a href="https://www.agussantos.es/" target='_blank'>{t("footer")}</a>
-      </footer>
-
-    </main>
-  )
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

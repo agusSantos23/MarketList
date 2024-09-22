@@ -1,5 +1,5 @@
 {
-  "lobby":{
+  "home":{
     "lobby-buttons":{
       "register": "Registrarse",
       "login": "Iniciar Sesion"
@@ -22,6 +22,30 @@
       }
     }
   },
-  "footer": "Pagina creada por AguSSantos"
+  "auth":{
+    "sections":{
+      "login": "Iniciar Sesion",
+      "register": "Registrarse"
+    },
+    "inputs":{
+      "email": "Correo Electronico",
+      "username": "Nombre de Usuario",
+      "password": "Contraseña",
+      "terms": {
+        "one": "Acepto los ",
+        "two": "términos y condiciones"
+      },
+      
+        
+      "errors": {
+        "need": " es requerido",
+        "atLeastOne": "Debe tener al menos ",
+        "atLeastTwo": " caracteres",
+        "terms": "Debes aceptar los términos y condiciones"
+      }
+      
+    }
+  },
+  "footer": "Pagina web creada por AguSSantos"
   
 }
