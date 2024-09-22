@@ -8,7 +8,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className='flex gap-4 text-xl'>
+    <div className='flex gap-4 text-xl font-quicksand'>
       <button onClick={() => changeLanguage('es')}>ES</button>
       <button onClick={() => changeLanguage('en')}>EN</button>
     </div>

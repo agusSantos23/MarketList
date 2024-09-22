@@ -15,7 +15,7 @@ function App() {
   const { t } = useTranslation()
 
   return (
-    <main>
+    <main className=' bg-myWhite'>
       <header className='flex justify-between items-center p-5'>
         <LanguageSwitcher />
 
@@ -30,15 +30,15 @@ function App() {
       <article className='h-dvh flex flex-col gap-10 justify-evenly items-center'>
 
         <section className='flex flex-col items-center'>
-          <h1 className='text-2xl mb-10'>MarketList</h1>
+          <h1 className='text-2xl mb-10 font-lilita text-myBlack'>MarketList</h1>
 
           <div className='w-20 h-20 bg-green-400 rounded-full'></div>
         </section>
         
 
         <section className='flex gap-5'>
-          <button  className="bg-white text-gray-800 font-semibold py-2 px-4 border border-green-500 rounded shadow-md hover:shadow-green-500 duration-200">{t('lobby.lobby-buttons.register')}</button>
-          <button  className="bg-white text-gray-800 font-semibold py-2 px-4 border border-green-700 rounded shadow-md hover:shadow-green-700 duration-200">{t('lobby.lobby-buttons.login')}</button>
+          <button  className="bg-myWhite font-quicksand py-2 px-4 border border-green-500 rounded shadow-md hover:shadow-green-500 duration-200">{t('lobby.lobby-buttons.register')}</button>
+          <button  className="bg-myWhite font-quicksand py-2 px-4 border border-green-700 rounded shadow-md hover:shadow-green-700 duration-200">{t('lobby.lobby-buttons.login')}</button>
         </section>
 
         <a href="#info">
@@ -51,35 +51,41 @@ function App() {
 
       </article>
 
-      <article id='info' className='h-lvh bg-slate-400 flex flex-col justify-around items-center text-center'>
+      <article id='info' className='h-lvh flex flex-col justify-center gap-2 items-center text-center'>
 
-        <section className='mx-10'>
-          <p>{t("lobby.information.paragraphOne")}</p>
+        <section className='mx-6'>
+          <h3 className='text-xl text-myBlack mb-3 font-lilita'>{t("lobby.information.paragraphOne.h3")}</h3>
+          <p className='font-quicksand'>{t("lobby.information.paragraphOne.p")}</p>
         </section>
 
-        <section className='mx-10 flex gap-1'>
+        <section>
 
-          <div className='w-28 h-48 bg-slate-600'>
-            <img src={userFriendly} alt="" />
-            <h2>{t("lobby.information.characteristics.One")}</h2>
+          <div className="w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-yellow border-yellow-400 hover:scale-110 duration-300 ease-in-out">
+            <img className="w-10" src={userFriendly} alt="" />
+            <h3 className="font-bold font-quicksand">{t("lobby.information.characteristics.One")}</h3>
           </div>
-          <div className='w-28 h-48 bg-slate-600'>
-            <img src={pen} alt="" />
-            <h2>{t("lobby.information.characteristics.Two")}</h2>
+          
+          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-violet border-violet-400 hover:scale-110 duration-300 ease-in-out'>
+            <img className='w-10' src={pen} alt="" />
+            <h3 className='font-bold font-quicksand'>{t("lobby.information.characteristics.Two")}</h3>
           </div>
-          <div className='w-28 h-48 bg-slate-600'>
-            <img src={cloudSync} alt="" />
-            <h2>{t("lobby.information.characteristics.Three")}</h2>
+
+          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-green border-green-400 hover:scale-110 duration-300 ease-in-out'>
+            <img className='w-10' src={cloudSync} alt="" />
+            <h3 className='font-bold font-quicksand'>{t("lobby.information.characteristics.Three")}</h3>
           </div>
         </section>
 
 
-        <section className='mx-10'>
-          <p>{t("lobby.information.paragraphTwo")}</p>
+        <section className='mx-5'>
+          <h3 className='text-xl text-myBlack mb-3 font-lilita'>{t("lobby.information.paragraphTwo.h3")}</h3>
+          <p className='font-quicksand'>{t("lobby.information.paragraphTwo.p")}</p>
         </section>
 
       </article>
-
+      <footer className='bg-myBlack text-myWhite p-2 text-center font-lilita'>
+        <a href="https://www.agussantos.es/" target='_blank'>{t("footer")}</a>
+      </footer>
 
     </main>
   )

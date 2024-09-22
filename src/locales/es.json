@@ -6,14 +6,22 @@
     },
     "arrowDown": "Flecha Abajo",
     "information":{
-      "paragraphOne": "La solución perfecta para llevar un registro avanzado de precios en diversos mercados. Nuestra plataforma intuitiva permite a los usuarios crear y gestionar notas detalladas",
+      "paragraphOne": {
+        "h3": "¿Que es MarketList?",
+        "p": "La solución ideal para un registro avanzado de precios en mercados. Nuestra plataforma intuitiva permite gestionar notas detalladas."
+      },
       "characteristics": {
         "One": "Interfaz Amigable",
         "Two": "Notas Avanzadas",
         "Three": "Sincronización"
       },
-      "paragraphTwo": "Crea y personaliza tu lista con productos y precios, asegurando que nunca olvides lo que necesitas y manteniendo un control total sobre tus gastos en cada mercado."
+      "paragraphTwo":{
+        "h3": "¿Que puedo hacer en MarketList?",
+        "p": "Crea y personaliza tu lista de productos y precios, asegurando que nunca olvides lo que necesitas y manteniendo el control de tus gastos."
+
+      }
     }
-  }
+  },
+  "footer": "Pagina creada por AguSSantos"
   
 }
