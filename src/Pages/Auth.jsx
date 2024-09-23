@@ -49,7 +49,7 @@ const Auth = () => {
       </header>
       <div className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 w-5/6 h-3/4 border-2 border-gray-300 rounded-md shadow-2xl'>
       
-        <div className='flex justify-around mt-4'>
+        <div className='flex justify-around mt-1'>
 
           <div className=' w-36 py-1 border-2 border-gray-200 rounded-md shadow-md text-lg text-center text-gray-600 font-lilita'>
             <h2 onClick={() => setOpenSection('register')}>{t("auth.sections.register")}</h2>
@@ -62,7 +62,7 @@ const Auth = () => {
           
 
         </div>
-        <div className='h-5/6 mt-5 flex flex-col  items-center'>
+        <div className='h-5/6 flex flex-col items-center mt-7'>
           {
             openSection === 'login' && <Login />
           }

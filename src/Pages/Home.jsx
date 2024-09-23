@@ -58,7 +58,7 @@ const Home = () => {
           <img 
             className='w-10 rotate-180 animate-fall' 
             src={arrowUP} 
-            alt={t("home.arrowDown")} 
+            alt="arrowDown"
           />
         </a>
 
@@ -73,17 +73,17 @@ const Home = () => {
 
         <section>
 
-          <div className="w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-yellow border-yellow-400 hover:scale-110 duration-300 ease-in-out">
+          <div className="w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-lateral-orange border-orange-400 hover:scale-110 duration-300 ease-in-out">
             <img className="w-10" src={userFriendly} alt={t("home.information.characteristics.One")} />
             <h3 className="font-bold font-quicksand">{t("home.information.characteristics.One")}</h3>
           </div>
           
-          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-violet border-violet-400 hover:scale-110 duration-300 ease-in-out'>
+          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-lateral-violet border-violet-400 hover:scale-110 duration-300 ease-in-out'>
             <img className='w-10' src={pen} alt={t("home.information.characteristics.Two")} />
             <h3 className='font-bold font-quicksand'>{t("home.information.characteristics.Two")}</h3>
           </div>
 
-          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-custom-lateral-green border-green-400 hover:scale-110 duration-300 ease-in-out'>
+          <div className='w-72 h-20 px-4 bg-myWhite flex gap-5 justify-start items-center my-5 border-2 rounded-md shadow-lateral-green border-green-400 hover:scale-110 duration-300 ease-in-out'>
             <img className='w-10' src={cloudSync} alt={t("home.information.characteristics.Three")} />
             <h3 className='font-bold font-quicksand'>{t("home.information.characteristics.Three")}</h3>
           </div>

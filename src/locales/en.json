@@ -4,7 +4,6 @@
       "register": "Register",
       "login": "Login"
     },
-    "arrowDown": "ArrowDown",
     "information":{
       "paragraphOne": {
         "h3": "What is MarketList?",
@@ -21,7 +20,28 @@
       }
     }
   },
-  
+  "auth":{
+    "sections":{
+      "login": "Login",
+      "register": "Register"
+    },
+    "inputs":{
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "terms": {
+        "one": "I accept the ",
+        "two": "terms and conditions"
+      },
+      "errors": {
+        "need": " is required",
+        "atLeastOne": "Must be at least ",
+        "atLeastTwo": " characters long",
+        "terms": "You must accept the terms and conditions"
+      }
+      
+    }
+  },
   "footer": "Website created by AguSSantos"
   
 }

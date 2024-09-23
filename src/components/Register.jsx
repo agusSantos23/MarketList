@@ -20,10 +20,10 @@ const Register = () => {
   return (
     <form 
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col h-full justify-around gap-6 items-center font-quicksand text-xs'  
+      className='flex flex-col h-max justify-start gap-6 items-center font-quicksand text-xs'  
     >
       
-      <div className='flex flex-col items-center gap-5'>
+      <div className='flex flex-col items-center gap-3'>
         
         <div className='flex flex-col gap-3'>
           <Input 
@@ -65,7 +65,7 @@ const Register = () => {
           />
         </div>
         <div className='flex flex-col gap-1'>
-          <label className='flex justify-center items-center'>
+          <label className='flex justify-center items-center text-sm text-gray-600'>
             <input 
               type="checkbox" 
               {...register('terms', { required: t("auth.inputs.errors.terms") })}

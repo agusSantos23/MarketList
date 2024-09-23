@@ -12,7 +12,6 @@ export default {
         'lilita': ['Lilita One', 'sans-serif'],
         'quicksand': ['Quicksand', 'sans-serif'],
       },
-      
       colors:{
         "myWhite": "#F9F9F9",
         "myBlack": "#212121"
@@ -26,9 +25,9 @@ export default {
         }
       },
       boxShadow: {
-        'custom-lateral-yellow': '-30px 0 30px -15px rgba(255, 255, 0, 0.5), 30px 0 30px -15px rgba(255, 255, 0, 0.5)',
-        'custom-lateral-violet': '-30px 0 30px -15px rgba(148, 0, 211, 0.5), 30px 0 30px -15px rgba(148, 0, 211, 0.5)', 
-        'custom-lateral-green': '-30px 0 30px -15px rgba(0, 128, 0, 0.5), 30px 0 30px -15px rgba(0, 128, 0, 0.5)', 
+        'lateral-orange': '-30px 0 30px -15px rgba(250, 145, 60, 0.5), 30px 0 30px -15px rgba(250, 145, 60, 0.5)',
+        'lateral-violet': '-30px 0 30px -15px rgba(148, 0, 211, 0.5), 30px 0 30px -15px rgba(148, 0, 211, 0.5)', 
+        'lateral-green': '-30px 0 30px -15px rgba(0, 128, 0, 0.5), 30px 0 30px -15px rgba(0, 128, 0, 0.5)', 
       },
     },
   },

@@ -4,7 +4,6 @@
       "register": "Registrarse",
       "login": "Iniciar Sesion"
     },
-    "arrowDown": "Flecha Abajo",
     "information":{
       "paragraphOne": {
         "h3": "¿Que es MarketList?",
@@ -35,8 +34,6 @@
         "one": "Acepto los ",
         "two": "términos y condiciones"
       },
-      
-        
       "errors": {
         "need": " es requerido",
         "atLeastOne": "Debe tener al menos ",
