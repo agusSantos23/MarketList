@@ -38,7 +38,8 @@
         "need": " es requerido",
         "atLeastOne": "Debe tener al menos ",
         "atLeastTwo": " caracteres",
-        "terms": "Debes aceptar los términos y condiciones"
+        "terms": "Debes aceptar los términos y condiciones",
+        "case": "Debe tener mayúscula y minúscula."
       }
       
     }

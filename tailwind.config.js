@@ -28,6 +28,7 @@ export default {
         'lateral-orange': '-30px 0 30px -15px rgba(250, 145, 60, 0.5), 30px 0 30px -15px rgba(250, 145, 60, 0.5)',
         'lateral-violet': '-30px 0 30px -15px rgba(148, 0, 211, 0.5), 30px 0 30px -15px rgba(148, 0, 211, 0.5)', 
         'lateral-green': '-30px 0 30px -15px rgba(0, 128, 0, 0.5), 30px 0 30px -15px rgba(0, 128, 0, 0.5)', 
+        'green-focus': '0 3px 10px 1px rgba(0, 170, 0, 0.7)',
       },
     },
   },

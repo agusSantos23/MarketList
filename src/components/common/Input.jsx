@@ -31,14 +31,14 @@ const Input = ({
 
   if (type === "password") {
     return (
-      <div className='flex flex-col gap-1'>
+      <div className='flex flex-col gap-2'>
         <div className="relative">
           <input
             type={viewPassword ? "password" : "text"}
             id={id}
             name={id}
             placeholder={placeholder}
-            className="bg-myWhite border-2 rounded-md border-gray-300 shadow-md text-center text-sm w-60 px-2 py-1"
+            className="bg-myWhite w-64 px-2 py-1 border-2 rounded-md border-gray-300 text-center text-sm focus:outline-none focus:shadow-green-focus focus:border-green-500"
             {...register(id, {
               required: {
                 value: required,
@@ -50,7 +50,7 @@ const Input = ({
               },
               pattern: {
                 value: /(?=.*[a-z])(?=.*[A-Z])/,
-                message: 'Debe tener mayúscula y minúscula.'
+                message: t("auth.inputs.errors.case")
               },
               ...passwordValidation 
             })}
@@ -63,18 +63,18 @@ const Input = ({
             className="absolute right-1 top-1/2 -translate-y-1/2 stroke-blue-400 cursor-pointer w-6"
           />
         </div>
-        {errors[id] && <span className='ml-1 pl-1 border-l-2 rounded-xl border-red-400 tracking-wide text-xs'>{errors[id].message}</span>}
+        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-sm'>{errors[id].message}</span>}
       </div>
     );
   } else {
     return (
-      <div className='flex flex-col gap-1'>
+      <div className='flex flex-col gap-2'>
         <input
           type={type}
           id={id}
           name={id}
           placeholder={placeholder}
-          className="bg-myWhite border-2 rounded-md border-gray-300 shadow-md text-center text-sm w-60 px-2 py-1"
+          className="bg-myWhite border-2 rounded-md border-gray-300 shadow-md text-center text-sm w-64 px-2 py-1 focus:outline-none focus:shadow-green-focus focus:border-green-500"
           {...register(id, {
             required: {
               value: required,
@@ -87,7 +87,7 @@ const Input = ({
           })}
           {...props}
         />
-        {errors[id] && <span className='ml-1 pl-1 border-l-2 rounded-xl border-red-400 tracking-wide text-xs'>{errors[id].message}</span>}
+        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-sm'>{errors[id].message}</span>}
       </div>
     );
   }

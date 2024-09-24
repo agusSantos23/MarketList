@@ -37,7 +37,8 @@
         "need": " is required",
         "atLeastOne": "Must be at least ",
         "atLeastTwo": " characters long",
-        "terms": "You must accept the terms and conditions"
+        "terms": "You must accept the terms and conditions",
+        "case": "Must be upper and lower case."
       }
       
     }

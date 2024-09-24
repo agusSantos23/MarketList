@@ -20,12 +20,12 @@ const Login = () => {
     
     <form 
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col h-full justify-start gap-6 items-center font-quicksand text-xs'  
+      className='flex flex-col h-5/6 my-6 justify-around items-center font-quicksand'  
     >
       
-      <div className='flex flex-col items-center gap-3'>
+      <div className='flex flex-col items-center gap-5'>
         
-        <div className='flex flex-col gap-3'>
+        <div className='flex flex-col items-center gap-2'>
           <Input 
             type="email" 
             id="email" 
@@ -52,9 +52,7 @@ const Login = () => {
             errors={errors}
             minLength={8}
           />
-        
-        </div>
-        <div className='flex flex-col gap-1'>
+        <div className='flex flex-col'>
           <label className='flex justify-center items-center text-sm'>
             <input 
               type="checkbox" 
@@ -68,8 +66,10 @@ const Login = () => {
               >{t("auth.inputs.terms.two")}</a>
             </span>
           </label>
-          {errors.terms && <p className='ml-1 pl-1 border-l-2 rounded-xl border-red-400 tracking-wide '>{errors.terms.message}</p>}
+          {errors.terms && <p className='ml-1 pl-2 text-xs border-l-2 rounded-xl border-red-400 tracking-wide '>{errors.terms.message}</p>}
         </div>
+        </div>
+        
       
         <Button content={t("auth.sections.login")}/>
 

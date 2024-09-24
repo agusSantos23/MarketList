@@ -20,12 +20,12 @@ const Register = () => {
   return (
     <form 
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col h-max justify-start gap-6 items-center font-quicksand text-xs'  
+      className='flex flex-col h-5/6 my-6 justify-around items-center font-quicksand'  
     >
       
-      <div className='flex flex-col items-center gap-3'>
+      <div className='flex flex-col items-center gap-5'>
         
-        <div className='flex flex-col gap-3'>
+        <div className='flex flex-col items-center gap-2'>
           <Input 
             type="email" 
             id="email" 
@@ -63,23 +63,24 @@ const Register = () => {
             compareWith="password"
             formValues={watch()}
           />
-        </div>
-        <div className='flex flex-col gap-1'>
-          <label className='flex justify-center items-center text-sm text-gray-600'>
+          <div className='flex flex-col'>
+          <label className='flex justify-center items-center text-sm'>
             <input 
               type="checkbox" 
               {...register('terms', { required: t("auth.inputs.errors.terms") })}
               className='mr-2' 
             />
             <span>{t("auth.inputs.terms.one")} <a 
-                className='text-blue-400 hover:font-bold duration-150 ease-in' 
+                className='text-blue-400 hover:text-green-400 duration-150 ease-in' 
                 href="/terms-and-conditions"  
                 target="_blank"
               >{t("auth.inputs.terms.two")}</a>
             </span>
           </label>
-          {errors.terms && <p className='ml-1 pl-1 border-l-2 rounded-xl border-red-400 tracking-wide '>{errors.terms.message}</p>}
+          {errors.terms && <p className='ml-1 pl-2 text-xs border-l-2 rounded-xl border-red-400 tracking-wide '>{errors.terms.message}</p>}
         </div>
+        </div>
+        
       
         <Button content={t("auth.sections.register")}/>
 
