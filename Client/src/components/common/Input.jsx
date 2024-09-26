@@ -25,7 +25,7 @@ const Input = ({
   const passwordValidation = compareWith && {
     validate: (value) => {
       const compareValue = formValues[compareWith]; 
-      return value === compareValue || 'Las contraseñas no coinciden.';
+      return value === compareValue || t("auth.inputs.errors.coincide");
     }
   }
 
@@ -59,7 +59,7 @@ const Input = ({
           <img
             onClick={handledView}
             src={viewPassword ? lockClose : lockOpen}
-            alt={viewPassword ? 'Mostrar contraseña' : 'Ocultar contraseña'}
+            alt={viewPassword ? 'View password' : 'Hide password'}
             className="absolute right-1 top-1/2 -translate-y-1/2 stroke-blue-400 cursor-pointer w-6"
           />
         </div>

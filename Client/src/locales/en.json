@@ -38,7 +38,8 @@
         "atLeastOne": "Must be at least ",
         "atLeastTwo": " characters long",
         "terms": "You must accept the terms and conditions",
-        "case": "Must be upper and lower case."
+        "case": "Must be upper and lower case.",
+        "coincide": "The passwords do not match."
       }
       
     }

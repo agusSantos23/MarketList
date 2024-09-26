@@ -39,7 +39,8 @@
         "atLeastOne": "Debe tener al menos ",
         "atLeastTwo": " caracteres",
         "terms": "Debes aceptar los términos y condiciones",
-        "case": "Debe tener mayúscula y minúscula."
+        "case": "Debe tener mayúscula y minúscula.",
+        "coincide": "Las contraseñas no coinciden."
       }
       
     }
