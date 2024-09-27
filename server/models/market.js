@@ -1,0 +1,36 @@
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
+import User from "./user.js";
+import Product from "./product.js";
+
+
+const Market = sequelize.define('Market', {
+
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  color: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate:{
+      is:{
+        args: [/^#([0-9A-F]{3}|[0-9A-F]{6})$/i],
+        msg: "The color must be a valid hexadecimal code (e.g., #fff or #ffffff)."
+      }
+    }
+  }
+})
+
+
+
+Market.belongsTo(User); 
+Market.hasMany(Product);
+
+export default Market;
