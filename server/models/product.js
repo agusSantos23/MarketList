@@ -1,8 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import Market from "./market.js";
-import Label from "./label.js";
-
 
 const Product = sequelize.define('Product',{
 
@@ -52,9 +49,8 @@ const Product = sequelize.define('Product',{
       key: 'id'
     }
   }
+},{
+  freezeTableName: true
 })
-
-Product.belongsTo(Market);
-Product.belongsTo(Label)
 
 export default Product

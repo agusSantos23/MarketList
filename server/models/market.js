@@ -1,8 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import User from "./user.js";
-import Product from "./product.js";
-
 
 const Market = sequelize.define('Market', {
 
@@ -26,11 +23,8 @@ const Market = sequelize.define('Market', {
       }
     }
   }
+},{
+  freezeTableName: true
 })
-
-
-
-Market.belongsTo(User); 
-Market.hasMany(Product);
 
 export default Market;

@@ -26,9 +26,8 @@ const ShoppingListProducts = sequelize.define('ShoppingListProducts', {
       key: 'id'
     }
   }
+},{
+  freezeTableName: true
 });
-
-ShoppingListProducts.belongsTo(ShoppingList); 
-ShoppingListProducts.belongsTo(Product);
 
 export default ShoppingListProducts;

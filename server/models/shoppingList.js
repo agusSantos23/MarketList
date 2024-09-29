@@ -1,9 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import User from "./user.js";
-import Product from "./product.js";
-import ShoppingListProducts from "./shoppingListProducts.js";
-
 
 const ShoppingList = sequelize.define('ShoppingList', {
   id: {
@@ -30,10 +26,9 @@ const ShoppingList = sequelize.define('ShoppingList', {
       key: 'id'
     }
   }
+},{
+  freezeTableName: true
 })
-
-ShoppingList.belongsTo(User); 
-ShoppingList.hasMany(ShoppingListProducts);
 
 export default ShoppingList;
 

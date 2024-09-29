@@ -1,33 +1,35 @@
 import express from 'express';
-import sequelize from './config/db.js'; 
 import dotenv from 'dotenv';
+import {connectDB, sequelize} from './config/db.js'
+import authRoutes from './routes/auth.js'
+
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
 
 app.use(express.json());
 
-app.get('/', async(req, res) => {
-  res.send('¡Servidor en funcionamiento!');
+
+app.use(authRoutes)
+
+
+
+const startServer = async () => {
 
   try {
-    await sequelize.authenticate();
-    console.log('Conexión a la base de datos establecida correctamente.');
+    await connectDB();
+    await sequelize.sync({ alter: true })
+    console.log("Base de datos sincronizada correctamente");
+    
 
+    app.listen(process.env.PORT, () => {
+      console.log(`Servidor escuchando en http://localhost:${process.env.PORT}`);   
+    });
   } catch (error) {
-    console.error('No se pudo conectar a la base de datos:', error);
-    process.exit(1); 
+    console.log("Error server:", error);
   }
-});
-
-
-
-const startServer = () => {
-  app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
-  });
 };
 
 startServer();

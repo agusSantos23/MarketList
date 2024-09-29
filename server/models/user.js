@@ -1,7 +1,5 @@
 import { DataTypes} from 'sequelize';
-import sequelize from '../config/db.js';
-import ShoppingList from './shoppingList.js';
-import Market from './market.js';
+import {sequelize} from '../config/db.js';
 
 const User = sequelize.define('User',{
 
@@ -38,9 +36,8 @@ const User = sequelize.define('User',{
     defaultValue: DataTypes.NOW,
     allowNull:false,
   }
+},{
+  freezeTableName: true
 })
-
-User.hasOne(ShoppingList);
-User.hasMany(Market);
 
 export default User;
