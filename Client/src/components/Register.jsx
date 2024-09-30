@@ -2,6 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { createData } from '../apiService.js';
 
 import Input from './common/Input';
 import Button from './common/Button';
@@ -13,9 +14,17 @@ const Register = () => {
   const { register, handleSubmit, formState: { errors },watch } = useForm();
   const { t } = useTranslation()
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = async (data) => {
+    
+    try {
+      const response = await createData('/register', data)
+      console.log('Register successful:', response);
+    } catch (error) {
+      console.error('Error register:', error.message); 
+    }
+
+  }
+
 
   return (
     <form 
@@ -50,7 +59,7 @@ const Register = () => {
             register={register}
             required={true}
             errors={errors}
-            minLength={8}
+            minLength={6}
             formValues={watch()}
           />
           <Input 
@@ -81,9 +90,7 @@ const Register = () => {
         </div>
         </div>
         
-      
         <Button content={t("auth.sections.register")}/>
-
       </div>
 
 
@@ -91,5 +98,6 @@ const Register = () => {
     </form>
   )
 }
+
 
 export default Register

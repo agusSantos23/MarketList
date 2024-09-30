@@ -2,19 +2,27 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { createData } from '../apiService.js'
 
 import Input from './common/Input';
 import Button from './common/Button';
 
 const Login = () => {
-
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { t } = useTranslation()
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = async (data) => {
+    try {
+      const response = await createData('/login', data)
+      console.log('Register successful:', response);
+    } catch (error) {
+      console.error('Error register:', error.message); 
+    }
+  }
+
+
+
 
   return (
     
@@ -34,15 +42,7 @@ const Login = () => {
             required={true}
             errors={errors}
           />
-          <Input 
-            type="text" 
-            id="username" 
-            placeholder={t("auth.inputs.username")}
-            register={register}
-            required={true}
-            minLength={3}
-            errors={errors}
-          />
+          
           <Input 
             type="password" 
             id="password" 
@@ -50,7 +50,7 @@ const Login = () => {
             register={register}
             required={true}
             errors={errors}
-            minLength={8}
+            minLength={6}
           />
         <div className='flex flex-col'>
           <label className='flex justify-center items-center text-sm'>

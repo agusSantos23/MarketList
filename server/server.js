@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
 import {connectDB, sequelize} from './config/db.js'
 import authRoutes from './routes/auth.js'
 
@@ -8,12 +10,16 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors({
+  origin: process.env.ORIGIN_CORS, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 
 app.use(express.json());
 
 
 app.use(authRoutes)
-
 
 
 const startServer = async () => {
