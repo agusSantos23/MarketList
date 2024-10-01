@@ -2,7 +2,7 @@ import dotenv  from 'dotenv';
 
 import User from '../models/user.js';
 import { hashPassword, verifyPassword } from '../lib/bcryptHash.js';
-import { createdAccessToken } from '../lib/jwt.js';
+import { createdAccessToken, verifyJWT } from '../lib/jwt.js';
 
 
 dotenv.config();
@@ -15,14 +15,15 @@ export const register = async ( req, res ) =>{
   
 
   try {
+    const loweredEmail = email.toLowerCase();
     
-    const userExists = await User.findOne({ where: { email }});
+    const userExists = await User.findOne({ where: { email: loweredEmail }});
     if (userExists) return res.status(400).json({ message: "Email in use"})
     
 
     const newUser = await User.create({
       username,
-      email,
+      email: loweredEmail,
       password: await hashPassword(password)
     })
 
@@ -43,10 +44,10 @@ export const login = async ( req, res ) => {
   
 
   try {
+    const loweredEmail = email.toLowerCase();
     
-    const user = await User.findOne({ where: {email} });
+    const user = await User.findOne({ where: {email: loweredEmail} });
     if (!user) return res.status(400).json({ message: "Incorrect credentials"})
-
 
     
     const samePassword = await verifyPassword(password, user.password)
@@ -60,7 +61,12 @@ export const login = async ( req, res ) => {
     })
 
   
-    res.cookie('tokenMarketList', token)
+    res.cookie('tokenMarketList', token,{
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Strict',
+      maxAge: 24 * 60 * 60 * 1000
+    })
 
     res.status(200).json({message: "Login successfully"});
 
@@ -68,4 +74,23 @@ export const login = async ( req, res ) => {
     res.status(500).json({ message: "Error Login", error})
   }
 
+}
+
+
+export const verifyToken = async ( req, res ) => {
+
+  console.log(req.cookies);
+  
+  const token = req.cookies.tokenMarketList
+
+  if(!token) return res.status(401).json({ message: 'Token not provided'})
+
+  try {
+    
+    const decoded = verifyJWT(token)
+
+    return res.status(200).json({user: decoded})
+  } catch (error) {
+    return res.status(403).json({ message: 'Invalid Token'})
+  }
 }

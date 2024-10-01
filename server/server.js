@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import {connectDB, sequelize} from './config/db.js'
 import authRoutes from './routes/auth.js'
@@ -10,14 +11,16 @@ dotenv.config();
 
 const app = express();
 
+app.use(cookieParser());
+
 app.use(cors({
   origin: process.env.ORIGIN_CORS, 
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
 app.use(express.json());
-
 
 app.use(authRoutes)
 
@@ -26,7 +29,7 @@ const startServer = async () => {
 
   try {
     await connectDB();
-    await sequelize.sync({ alter: true })
+    await sequelize.sync({ alter: false })
     console.log("Base de datos sincronizada correctamente");
     
 

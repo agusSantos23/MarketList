@@ -21,12 +21,12 @@ export function createdAccessToken(payload){
 }
 
 export function verifyJWT(token) {
-    return new Promise((resolve, reject) => {
-      jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-        if (err) {
-          return reject(err);
-        }
-        resolve(user);
-      });
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(user);
     });
-  }
+  });
+}
