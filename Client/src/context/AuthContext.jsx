@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
+import PropTypes from "prop-types";
+import { checkAuth } from "./authHelpers.js";
+import { sendRequest } from "../apiService.js";
 
 const AuthContext = createContext();
 
@@ -11,30 +13,31 @@ export const AuthProvider = ({ children }) =>{
 
   useEffect(() =>{
     
-    const checkAuth = async () =>{
-      try {
-        const response = await api.get('/verify-token'); 
-        setUser(response.data.user); 
-      } catch (error) {
-        console.log('Not authenticated', error);
-        navigate('/');
-      }
-    }
+    const authenticate = async () => {
+      const user = await checkAuth();
+      if (user) {
+        setUser(user)
+        navigate('/lobby');
 
-    checkAuth()
+      }
+      
+    };
+
+    authenticate();
   },[navigate])
 
-  const login = async (userData) => {
-    try {
-      const response = await api.post('/login', userData);
-      setUser(response.data.user);
-      navigate('/lobby');
-    } catch (error) {
-      console.error('Login failed', error); // Manejo de errores
-    }
+
+  const login = (userData) => {
+    setUser(userData);
+    
+    navigate('/lobby');
   };
 
-  const logout = () => {
+  const logout = async () => {
+    
+    await sendRequest('/logout')
+    
+    
     setUser(null);
     navigate('/'); 
   };
@@ -45,6 +48,10 @@ export const AuthProvider = ({ children }) =>{
     </AuthContext.Provider>
   )
 }
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export const useAuth = () => {
   return useContext(AuthContext);

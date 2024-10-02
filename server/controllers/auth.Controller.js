@@ -27,8 +27,9 @@ export const register = async ( req, res ) =>{
       password: await hashPassword(password)
     })
 
+    const { password: _, ...userEnd } = newUser.dataValues;
 
-    res.status(201).json({ message: "User register successfully"});
+    res.status(201).json(userEnd);
 
   } catch (error) {    
     res.status(500).json({ message: "Error to register user", error });
@@ -76,10 +77,18 @@ export const login = async ( req, res ) => {
 
 }
 
-
+export const logout = async ( req, res ) => {
+  try {
+    
+    res.clearCookie('tokenMarketList', { httpOnly: true, secure: true, sameSite: 'Strict' })
+    
+    return res.status(200).json({ message: "Cookie deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error delete cookie"})
+  }  
+}
+ 
 export const verifyToken = async ( req, res ) => {
-
-  console.log(req.cookies);
   
   const token = req.cookies.tokenMarketList
 
@@ -87,8 +96,8 @@ export const verifyToken = async ( req, res ) => {
 
   try {
     
-    const decoded = verifyJWT(token)
-
+    const decoded = await verifyJWT(token)
+      
     return res.status(200).json({user: decoded})
   } catch (error) {
     return res.status(403).json({ message: 'Invalid Token'})

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { createData } from '../apiService.js'
+import { useAuth } from '../context/AuthContext.jsx';
 
 import Input from './common/Input';
 import Button from './common/Button';
@@ -11,16 +12,17 @@ const Login = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { t } = useTranslation()
+  const { login } = useAuth()
 
   const onSubmit = async (data) => {
     try {
       const response = await createData('/login', data)
-      console.log('Register successful:', response);
+      login(response)
+      
     } catch (error) {
       console.error('Error register:', error.message); 
     }
   }
-
 
 
 
