@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { createData } from '../apiService.js'
 import { useAuth } from '../context/AuthContext.jsx';
 
-import Input from './common/Input';
-import Button from './common/Button';
+import Input from './common/form/Input.jsx';
+import Button from './common/form/Button.jsx';
 
 const Login = () => {
   

@@ -44,6 +44,11 @@
       
     }
   },
+  "lobby":{
+    "layout":{
+      
+    }
+  },
+
   "footer": "Website created by AguSSantos"
-  
 }

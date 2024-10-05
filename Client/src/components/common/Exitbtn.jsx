@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import close from "../../assets/svg/close.svg"
+import close from "../../assets/svg/common/close.svg"
 
 const Exitbtn = () => {
 

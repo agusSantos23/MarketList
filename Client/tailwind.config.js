@@ -14,6 +14,7 @@ export default {
       },
       colors:{
         "myWhite": "#F9F9F9",
+        "myGray": "#dcdcdc",
         "myBlack": "#212121"
       },
       animation:{

@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import lockOpen from "../../assets/svg/padlock/lock-open.svg";
-import lockClose from "../../assets/svg/padlock/lock-closed.svg";
+import lockOpen from "../../../assets/svg/padlock/lock-open.svg";
+import lockClose from "../../../assets/svg/padlock/lock-closed.svg";
 
 const Input = ({
   type,

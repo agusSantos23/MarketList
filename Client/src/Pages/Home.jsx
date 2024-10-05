@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
 
-import SS from '../assets/svg/logoSS.svg'
-import arrowUP from '../assets/svg/arrowUP.svg'
+import ssSVG from '../assets/svg/logoSS.svg'
+import arrowUpSVG from '../assets/svg/common/arrowUP.svg'
 
 import cloudSync from '../assets/svg/characteristics/cloudSync.svg'
 import pen from '../assets/svg/characteristics/penNotes.svg'
@@ -29,7 +29,7 @@ const Home = () => {
         <a href="https://www.agussantos.es/" target='_blank'>
           <img 
             className='w-5 hover:scale-125 duration-75 ease-in' 
-            src={SS} 
+            src={ssSVG} 
             alt="aguSSantos" 
           />
         </a>
@@ -57,7 +57,7 @@ const Home = () => {
         <a href="#info">
           <img 
             className='w-10 rotate-180 animate-fall' 
-            src={arrowUP} 
+            src={arrowUpSVG} 
             alt="arrowDown"
           />
         </a>
