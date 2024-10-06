@@ -28,7 +28,7 @@ const Auth = () => {
   }, [location]);
 
   return (
-    <main className='bg-myWhite h-lvh'>
+    <main className='bg-myWhite h-lvh font-quicksand'>
       <header className='flex justify-between items-center py-2 px-5 '>
         <div className='flex gap-8'>
           <Exitbtn />

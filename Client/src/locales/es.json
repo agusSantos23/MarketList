@@ -48,17 +48,16 @@
   "lobby":{
     "layout":{
       "h1": "Bienvenido",
-      "sectionOne": {
+      "section": {
         "labels": "Etiquetas",
         "markets": "Mercados",
         "products": "Productos"
       },
-      "sectionTwo": {
-        "shoppingList": "Lista de la Compra",
-        "logout": "Cerrar Sesion"
-      }
+      
+      "logout": "Cerrar Sesion"
+      
     }
   },
 
-  "footer": "Pagina web creada por AguSSantos"
+  "footer": "Pagina web creada por"
 }

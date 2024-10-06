@@ -46,9 +46,16 @@
   },
   "lobby":{
     "layout":{
+      "h1": "Welcome",
+      "section": {
+        "labels": "Labels",
+        "markets": "Markets",
+        "products": "Products"
+      },
+      "logout": "Log Out"
       
     }
   },
 
-  "footer": "Website created by AguSSantos"
+  "footer": "Website created by"
 }

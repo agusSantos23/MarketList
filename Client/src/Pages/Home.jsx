@@ -97,7 +97,7 @@ const Home = () => {
 
       </article>
       <footer className='bg-myBlack text-myWhite p-2 text-center font-lilita'>
-        <a href="https://www.agussantos.es/" target='_blank'>{t("footer")}</a>
+        <a href="https://www.agussantos.es/" target='_blank'>{t("footer")} Agu<span className="text-orange-400">SS</span>antos</a>
       </footer>
 
     </main>
