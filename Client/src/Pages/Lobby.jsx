@@ -6,7 +6,7 @@ import Layout from "../components/Layout.jsx";
 import menuSVG from "../assets/svg/common/menu.svg";
 import checkSVG from "../assets/svg/common/check.svg"
 import addSVG from "../assets/svg/common/add.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const Lobby = () => {
@@ -19,15 +19,33 @@ const Lobby = () => {
     console.log("hola:", value);
     
   }
+
+  const hanleVisible = () => setIsVisible(!isVisible)
+
+
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; 
+    };
+  }, [isVisible]);
   
   return (
     <main className="relative px-3 py-5 bg-myWhite min-h-svh">
-      <Layout isVisible={true}/>
+      <Layout isVisible={isVisible} hanleVisible={hanleVisible}/>
 
       <header 
         className="fixed left-1/2 transform -translate-x-1/2 w-11/12 flex justify-between items-center z-10"
       >
-        <div className=" w-9 p-1 border-2 rounded-md bg-myWhite border-t-blue-200 border-l-blue-200 border-b-blue-400 border-r-blue-400 shadow-lg shadow-blue-300 hover:scale-125 duration-200">
+        <div 
+          className=" w-9 p-1 border-2 rounded-md bg-myWhite border-t-blue-200 border-l-blue-200 border-b-blue-400 border-r-blue-400 shadow-lg shadow-blue-300 hover:scale-125 duration-200"
+          onClick={hanleVisible}
+        >
           <img 
             src={menuSVG} 
             alt="icon menu" 
@@ -41,7 +59,6 @@ const Lobby = () => {
           <img 
             src={checkSVG} 
             alt="icon check" 
-            
           />
         </div>
 

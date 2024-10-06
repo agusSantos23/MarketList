@@ -47,7 +47,7 @@
   },
   "lobby":{
     "layout":{
-      "h1": "Bienbenido",
+      "h1": "Bienvenido",
       "sectionOne": {
         "labels": "Etiquetas",
         "markets": "Mercados",

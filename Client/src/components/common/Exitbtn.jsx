@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import close from "../../assets/svg/common/close.svg"
+import closeSVG from "../../assets/svg/common/close.svg"
 
 const Exitbtn = () => {
 
@@ -10,8 +10,8 @@ const Exitbtn = () => {
     <>
       <img
         onClick={() =>{navigate("/")}}
-        className="w-10"
-        src={close} 
+        className="w-6"
+        src={closeSVG} 
         alt="close" 
       />
     </>
