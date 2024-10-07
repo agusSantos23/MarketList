@@ -53,7 +53,10 @@
         "products": "Products"
       },
       "logout": "Log Out"
-      
+    },
+    "plus":{
+      "labels": "Etiquetas",
+      "markets": "Mercados"
     }
   },
 

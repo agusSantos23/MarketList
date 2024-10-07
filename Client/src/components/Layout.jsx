@@ -16,7 +16,7 @@ const Layout = ({ isVisible, hanleVisible }) => {
   if (isVisible) {
     return (
       <>
-        <aside className="fixed top-0 left-0 py-7 px-3 flex flex-col justify-between font-quicksand bg-myWhite border-r-8 shadow-2xl shadow-blue-700 border-r-blue-200 w-4/5 h-svh z-50">
+        <aside className={`fixed top-0 left-0 py-7 px-3 flex flex-col justify-between font-quicksand bg-myWhite border-r-8 shadow-2xl shadow-blue-700 border-r-blue-200 w-4/5 h-svh z-50 `}>
           
 
           <main
@@ -39,16 +39,12 @@ const Layout = ({ isVisible, hanleVisible }) => {
 
               <LanguageSwitcher />
             </section>
-            
-              
-              
 
             <button 
               onClick={logout}
               className="ml-3 w-36 py-1 font-lilita border-2 border-red-400 shadow-md hover:shadow-red-400"
             >{t("lobby.layout.logout")}</button>
-            
-            
+
           </main>
           <footer className="flex justify-center items-center">
             <h3 

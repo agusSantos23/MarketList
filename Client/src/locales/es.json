@@ -56,6 +56,10 @@
       
       "logout": "Cerrar Sesion"
       
+    },
+    "plus":{
+      "labels": "Etiquetas",
+      "markets": "Mercados"
     }
   },
 
