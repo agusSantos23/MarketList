@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { checkAuth } from "./authHelpers.js";
 import { sendRequest } from "../apiService.js";
@@ -9,22 +9,22 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) =>{
   const [user, setUser] = useState(null)
+  const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() =>{
     
     const authenticate = async () => {
       const user = await checkAuth();
-      if (user) {
-        setUser(user)
-        navigate('/lobby');
-
+      user && setUser(user)
+      if (location.pathname === '/') {
+        navigate('/lobby')
       }
-      
+
     };
 
     authenticate();
-  },[navigate])
+  },[navigate,location])
 
 
   const login = (userData) => {
@@ -34,9 +34,7 @@ export const AuthProvider = ({ children }) =>{
   };
 
   const logout = async () => {
-    
     await sendRequest('/logout')
-    
     
     setUser(null);
     navigate('/'); 

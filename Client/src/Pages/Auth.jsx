@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx';
 
 import Register from '../components/Register.jsx';
 import Login from '../components/Login.jsx';
-import Exitbtn from '../components/common/Exitbtn.jsx';
 
+import closeSVG from "../assets/svg/common/close.svg"
 import SS from '../assets/svg/logoSS.svg'
 
 
 const Auth = () => {
-
-  const location = useLocation();
+  const navigate = useNavigate()
+  const location = useLocation()
   const [openSection, setOpenSection] = useState('login');
   const { t } = useTranslation()
 
@@ -31,7 +31,13 @@ const Auth = () => {
     <main className='bg-myWhite h-lvh font-quicksand'>
       <header className='flex justify-between items-center py-2 px-5 '>
         <div className='flex gap-8'>
-          <Exitbtn />
+
+          <img
+            onClick={() =>{navigate("/")}}
+            className="w-6"
+            src={closeSVG} 
+            alt="close" 
+          />
           
           <LanguageSwitcher />
         </div>

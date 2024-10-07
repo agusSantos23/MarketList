@@ -83,7 +83,7 @@ const Lobby = () => {
             <div className='flex flex-col justify-around items-center absolute right-8 bottom-8 w-36 h-24 text-xl bg-myWhite rounded-sm border-4 border-t-green-200 border-l-green-200 border-b-green-400 border-r-green-400 z-20'>
               <Link>{t("lobby.plus.labels")}</Link>
               <div className='border-2 w-24 rounded-md border-green-300 shadow-md shadow-green-300'></div>
-              <Link>{t("lobby.plus.markets")}</Link>
+              <Link to="/markets">{t("lobby.plus.markets")}</Link>
             </div>
           )}
           

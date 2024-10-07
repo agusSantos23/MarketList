@@ -9,8 +9,8 @@ const Exitbtn = () => {
   return (
     <>
       <img
-        onClick={() =>{navigate("/")}}
-        className="w-6"
+        onClick={() =>{navigate("/lobby")}}
+        className="w-8"
         src={closeSVG} 
         alt="close" 
       />
