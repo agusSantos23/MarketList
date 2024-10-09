@@ -15,16 +15,20 @@ export const AuthProvider = ({ children }) =>{
   useEffect(() =>{
     
     const authenticate = async () => {
-      const user = await checkAuth();
-      user && setUser(user)
-      if (location.pathname === '/') {
-        navigate('/lobby')
+      
+      if (!user) {
+        const userAuth = await checkAuth();        
+        setUser(userAuth)
       }
 
-    };
-
+      if (location.pathname === '/' && user) {
+        navigate('/lobby')
+      }   
+    }
+    
     authenticate();
-  },[navigate,location])
+    
+  },[user,navigate,location])
 
 
   const login = (userData) => {

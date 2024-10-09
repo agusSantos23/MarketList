@@ -18,10 +18,14 @@ const Market = sequelize.define('Market', {
     allowNull: false,
     validate:{
       is:{
-        args: [/^#([0-9A-F]{3}|[0-9A-F]{6})$/i],
+        args: [/^([0-9A-F]{3}|[0-9A-F]{6})$/i],
         msg: "The color must be a valid hexadecimal code (e.g., #fff or #ffffff)."
       }
     }
+  },
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false,
   }
 },{
   freezeTableName: true

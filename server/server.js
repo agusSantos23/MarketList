@@ -3,9 +3,12 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import {connectDB, sequelize} from './config/db.js'
-import authRoutes from './routes/auth.js'
+import {connectDB} from './config/db.js'
+import sequelize from './config/db.js'
 
+
+import authRoutes from './routes/auth.Routes.js'
+import marketRoutes from './routes/market.Routes.js'
 
 dotenv.config();
 
@@ -23,6 +26,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use(authRoutes)
+app.use('/markets',marketRoutes)
 
 
 const startServer = async () => {

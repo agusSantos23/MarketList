@@ -1,9 +1,18 @@
 import api from './api';
 
+export const getData = async (endpoint) => {
+  try {
+    const response = await api.get(endpoint);
+    return response; 
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error fetching data");
+  }
+};
+
 export const createData = async (endpoint, data) =>{
   try {
     const response = await api.post(endpoint, data);
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error(error.response?.data?.message || "Error creating data")
   }

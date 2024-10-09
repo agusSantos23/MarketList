@@ -13,7 +13,6 @@ import addSVG from "../assets/svg/common/add.svg";
 
 const Lobby = () => {
 
-  //const { logout, user } = useAuth() 
 
   const [isVisibleLayout, setIsVisibleLayout] = useState(false)
   const [isVisiblePopup, setIsVisiblePopup] = useState(false)

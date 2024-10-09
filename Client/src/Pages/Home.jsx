@@ -21,6 +21,7 @@ const Home = () => {
     navigate(`/auth?section=${section}`)
   }
 
+  
   return (
     <main className=' bg-myWhite'>
       <header className='h-14 flex justify-between items-center px-5 py-2'>

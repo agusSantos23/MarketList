@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const CheckRadio = ({ color, selectedValue, setSelectedValue }) => {
+const CheckRadio = ({ color, selectedValue, handleColorChange }) => {
   return (
     <label className="relative flex items-center justify-center cursor-pointer">
       <input 
@@ -8,7 +8,7 @@ const CheckRadio = ({ color, selectedValue, setSelectedValue }) => {
         name="color" 
         value={color}
         checked={selectedValue === color}
-        onChange={() => setSelectedValue(color)}
+        onChange={() => handleColorChange(color)}
         className="sr-only peer"
       />
       <div
@@ -27,8 +27,8 @@ const CheckRadio = ({ color, selectedValue, setSelectedValue }) => {
 
 CheckRadio.propTypes = {
   color: PropTypes.string.isRequired,
-  selectedValue: PropTypes.func.isRequired,
-  setSelectedValue: PropTypes.func.isRequired
+  selectedValue: PropTypes.string.isRequired,
+  handleColorChange: PropTypes.func.isRequired
 }
 
 export default CheckRadio
