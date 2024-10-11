@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useEffect, useState } from "react"
 
 import { useAuth } from '../context/AuthContext.jsx'
-import { createData, getData } from '../apiService.js'
+import { createData, getData, deleteData } from '../apiService.js'
 import { capitalizeWords } from '../utils/utils.js'
 
 import Exitbtn from "../components/common/Exitbtn.jsx"
@@ -12,51 +12,25 @@ import CheckRadio from "../components/common/form/CheckRadio.jsx"
 
 const Markets = () => {
 
-  const { register, handleSubmit, setValue, formState: { errors, isSubmitted  } } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitted  } } = useForm()
   const { user } = useAuth()
 
-  const [markets, setMarkets] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [markets, setMarkets] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
 
   const [isVisibleDelete, setIsVisibleDelete] = useState(false)
+  const [selectedMarket, setSelectedMarket] = useState(null)
+
   const [isVisibleCreate, setIsVisibleCreate] = useState(false)
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedColor, setSelectedColor] = useState("")
   
   const [refresh, setRefresh] = useState(false);
 
-  const [selectedMarket, setSelectedMarket] = useState(null);
 
-  
-
-  const hanleVisibleDelete = () => setIsVisibleDelete(!isVisibleDelete)
-  const hanleVisibleCreate = () => setIsVisibleCreate(!isVisibleCreate)
-
-  const onSubmit = async (data) => {    
-    try {
-
-      if(data.marketName && data.color && user.id){
-        const marketData = {
-          ...data,      
-          userId: user.id
-        };
-      
-        const response = await createData('/markets/create', marketData)
-        
-        if (response.status === 201) {
-          hanleVisibleCreate(!isVisibleCreate)
-          setSelectedColor("");
-          setRefresh(prev => !prev);
-        }else{
-          console.log(response.data.message);
-        }
-      }
-
-    } catch (error) {
-      console.error('Error creating market:', error);
-    }
-  };
+  const handleVisibleDelete = () => setIsVisibleDelete(!isVisibleDelete)
+  const handleVisibleCreate = () => setIsVisibleCreate(!isVisibleCreate)
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -65,8 +39,48 @@ const Markets = () => {
   
   const handleDeleteMarket = (market) => {
     setSelectedMarket(market); 
-    hanleVisibleDelete(); 
+    handleVisibleDelete(); 
   };
+
+
+  const onSubmit = async (data) => {    
+    try {
+
+      if(data.marketName && data.color && user.id){
+        const marketData = {
+          ...data,      
+          userId: user.id
+        }
+      
+        await createData('/markets/create', marketData)
+        
+        handleVisibleCreate(!isVisibleCreate)
+        setSelectedColor("")
+        setRefresh(!refresh)
+        setError(null)
+      }
+
+    } catch (error) {
+      console.error('Error creating market:', error);
+      setError(error.message || 'An unexpected error occurred');
+    }    
+  }
+
+  const handleConfirmDelete = async () =>{
+    try {
+      if (selectedMarket.id) {
+        const response = await deleteData(`/markets/delete/${selectedMarket.id}`)
+        if (response.status === 200) {
+          setRefresh(!refresh)
+          handleVisibleDelete()
+          setSelectedMarket(null)
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting market:', error.message)
+    }
+  }
+  
 
   useEffect(() => {
 
@@ -88,7 +102,6 @@ const Markets = () => {
 
 
   if (loading) return <p>Loading...</p>; 
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <main className="relative px-3 py-5 min-h-svh font-quicksand">
@@ -109,24 +122,22 @@ const Markets = () => {
               name={capitalizeWords(market.name)} 
               colorHexa={`#${market.color}`} 
               activated={isVisibleDelete} 
-              setActivatedDelete={() => handleDeleteMarket(capitalizeWords(market.name))}
+              setActivatedDelete={() => handleDeleteMarket(market)}
             />
           )
         })}
 
-        <div 
-          className="w-48 mt-5 p-2 mx-auto text-center text-lg border-4 border-gray-400 text-gray-400 rounded-md shadow-xl shadow-gray-400 font-lilita"
-          onClick={hanleVisibleCreate}
-        >
-          <h2>Add a Market</h2>
-        </div>
+        <button 
+          className='w-48 mt-6 p-2 mx-auto text-center text-lg border-4 border-gray-400 text-gray-400 rounded-md shadow-xl shadow-gray-400 font-lilita'
+          onClick={handleVisibleCreate}
+        >Add a Market</button>
  
       </article>
 
-      <Modal isOpen={isVisibleCreate} handleVisible={hanleVisibleCreate}>
+      <Modal isOpen={isVisibleCreate} handleVisible={handleVisibleCreate}>
         <form 
           onSubmit={handleSubmit(onSubmit)}
-          className="h-64 flex flex-col justify-between items-center"
+          className="flex flex-col justify-center items-center gap-5"
         >
           <div className="flex flex-col gap-6">
             <div className='flex flex-col gap-2'>
@@ -156,24 +167,42 @@ const Markets = () => {
             
           </div>
           
+          <div className='flex flex-col justify-center items-center gap-2'>
+            <button 
+              type="submit"
+              className=" px-7 py-1 border-4 border-green-300 rounded-md font-lilita "
+              style={{borderColor: selectedColor}}
+              disabled={markets.length >= 10}
+            >ADD</button>
+            {
+              markets.length >= 10 && <p className='text-sm text-red-400'> no puedes agregar mas mercados</p>
+            }
+          </div>
 
-          <button 
-            type="submit"
-            className=" px-7 py-1 border-4 border-green-300 rounded-md font-lilita "
-            style={{borderColor: selectedColor}}
-          >
-            ADD
-          </button>
+          <div>
+            {error && <p className='text-red-400 text-sm'>{error}</p>}
 
-
+          </div>
         </form>
         
       </Modal>
 
-      <Modal isOpen={isVisibleDelete} handleVisible={hanleVisibleDelete}>
-        {
-          `delete ${selectedMarket}?`
-        }
+      <Modal isOpen={isVisibleDelete} handleVisible={handleVisibleDelete}>
+        <div className='flex flex-col items-center justify-center gap-5'>
+          <p className='text-center text-lg'>Do you want to delete {selectedMarket && capitalizeWords(selectedMarket.name)}, which will delete all products under it?</p>
+          <div className='flex gap-5'>
+            <button 
+              onClick={handleConfirmDelete}
+              className='py-1 px-4 border-2 rounded-lg border-red-500 shadow-lg hover:shadow-red-500 duration-100 ease-in'
+            >Delete</button>
+            
+            <button 
+              onClick={handleVisibleDelete}
+              className='py-1 px-4 border-2 rounded-lg border-green-500 shadow-lg hover:shadow-green-500 duration-100 ease-in'
+            >Cancel</button>
+          </div>
+        </div>
+        
       </Modal>
     </main>
   )

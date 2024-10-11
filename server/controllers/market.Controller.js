@@ -7,16 +7,16 @@ export const createMarket = async (req, res) => {
   
   if (!marketName || !color || !userId) return res.status(400).json({ message: "Market name and color, User are required" });
   
-  const marketNameLower = marketName.toLowerCase();
+  const marketNameLower = marketName.toLowerCase()
 
-  const modifiedColor = color.slice(1);
+  const modifiedColor = color.slice(1)
 
 
   try {
 
-    const existingMarket = await Market.findOne({ where: { name: marketNameLower } });
+    const existingMarket = await Market.findOne({ where: { name: marketNameLower } })
 
-    if (existingMarket) return res.status(400).json({ message: "Market with this name already exists." });
+    if (existingMarket) return res.status(400).json({ message: "Market with this name already exists." })
     
 
     await Market.create({
@@ -26,19 +26,19 @@ export const createMarket = async (req, res) => {
     });
     
 
-    return res.status(201).json({ message: 'Market created successfully'});
+    return res.status(201).json({ message: 'Market created successfully'})
 
   } catch (error) {
-    console.error("Error creating market:", error);
+    console.error("Error creating market:", error)
 
-    return res.status(500).json({ message: "Error creating market" });
+    return res.status(500).json({ message: "Error creating market" })
   }
 
 }
 
 export const getMarket = async (req,res) => {
 
-  const userId = req.params.userId;
+  const userId = req.params.userId
   
   
   try {
@@ -47,12 +47,32 @@ export const getMarket = async (req,res) => {
       attributes:['id','name','color']
     }); 
     
-    const marketDataValues = markets.map(market => market.dataValues);
+    const marketDataValues = markets.map(market => market.dataValues)
     
-    res.status(200).json(marketDataValues);
+    res.status(200).json(marketDataValues)
   } catch (error) {
-    console.log(error);
+    console.log(error)
     
-    res.status(500).json({ message: 'Error retrieving markets', error: error.message });
+    res.status(500).json({ message: 'Error retrieving markets', error: error.message })
+  }
+}
+
+export const deleteMarket = async (req,res) => {
+
+  const { marketId } = req.params
+
+  try {
+    
+    const market = await Market.findByPk(marketId)
+
+    if(!market) return res.status(404).json({message: "Market not found"})
+    
+
+    await market.destroy()
+
+    res.status(200).json({ message: 'Market deleted successfully' })
+
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' })
   }
 }

@@ -2,8 +2,6 @@ import PropTypes from "prop-types"
 
 const Deletebtn = ({ width, setActivated }) => {
   
-  
-
   return (
     <svg
       className="hover:scale-125"

@@ -27,3 +27,12 @@ export const sendRequest = async (endpoint) =>{
     
   }
 }
+
+export const deleteData = async (endpoint) =>{
+  try {
+    const response = await api.delete(endpoint)
+    return response;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error deleting data")
+  }
+}
