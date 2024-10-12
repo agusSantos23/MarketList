@@ -55,13 +55,32 @@
       },
       
       "logout": "Cerrar Sesion"
-      
     },
     "plus":{
       "labels": "Etiquetas",
       "markets": "Mercados"
     }
   },
-
+  "market":{
+    "h1":"Mercados",
+    "add": "Agregar Mercados",
+    "modalCreate":{
+      "input": {
+        "placeholder":"Nombre del Mercado",
+        "required":"El nombre del Mercado es requerido"
+      },
+      "radioSelect":"Por favor seleccione un color",
+      "button": "AGREGAR",
+      "max": "No puedes agregar mas Mercados"
+    },
+    "modalDelete":{
+      "p": {
+        "one": "Quieres eliminar",
+        "two": "lo que eliminara todos los productos que contiene?"
+      },
+      "btnDelete": "Eliminar",
+      "btnCancel": "Cancel"
+    }
+  },
   "footer": "Pagina web creada por"
 }

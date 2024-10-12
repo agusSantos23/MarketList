@@ -53,7 +53,7 @@ const Auth = () => {
       </header>
 
 
-      <div className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 w-5/6 h-5/6 border-2 border-gray-300 rounded-md shadow-2xl'>
+      <div className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 w-5/6 h-5/6 mt-4 border-2 border-gray-300 rounded-md shadow-2xl'>
       
         <div className='flex justify-around mt-2'>
 
@@ -67,10 +67,9 @@ const Auth = () => {
 
         </div>
         
-          {openSection === 'login' && <Login />}
+        {openSection === 'login' && <Login />}
 
-          {openSection === 'register' && <Register />}
-
+        {openSection === 'register' && <Register />}
         
       </div>
       

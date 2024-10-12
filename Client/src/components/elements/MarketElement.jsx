@@ -8,7 +8,7 @@ const MarketElement = ({name, colorHexa, setActivatedDelete}) => {
 
   return (
     <div className="flex items-center gap-6">
-      <Deletebtn width="40px" setActivated={setActivatedDelete}/>
+      <Deletebtn width="30px" setActivated={setActivatedDelete}/>
 
       <Link to={`/mercadona?market=${name}`}>
         <div 

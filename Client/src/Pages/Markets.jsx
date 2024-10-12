@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from "react"
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '../context/AuthContext.jsx'
 import { createData, getData, deleteData } from '../apiService.js'
@@ -13,12 +14,12 @@ import CheckRadio from "../components/common/form/CheckRadio.jsx"
 const Markets = () => {
 
   const { register, handleSubmit, setValue, formState: { errors, isSubmitted  } } = useForm()
+  const { t } = useTranslation()
   const { user } = useAuth()
 
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
+  const [errorServer, setErrorServer] = useState(null)
 
   const [isVisibleDelete, setIsVisibleDelete] = useState(false)
   const [selectedMarket, setSelectedMarket] = useState(null)
@@ -28,7 +29,7 @@ const Markets = () => {
   
   const [refresh, setRefresh] = useState(false);
 
-
+  
   const handleVisibleDelete = () => setIsVisibleDelete(!isVisibleDelete)
   const handleVisibleCreate = () => setIsVisibleCreate(!isVisibleCreate)
 
@@ -57,12 +58,12 @@ const Markets = () => {
         handleVisibleCreate(!isVisibleCreate)
         setSelectedColor("")
         setRefresh(!refresh)
-        setError(null)
+        setErrorServer(null)
       }
 
     } catch (error) {
       console.error('Error creating market:', error);
-      setError(error.message || 'An unexpected error occurred');
+      setErrorServer(error.message || 'An unexpected error occurred');
     }    
   }
 
@@ -78,6 +79,7 @@ const Markets = () => {
       }
     } catch (error) {
       console.error('Error deleting market:', error.message)
+      setErrorServer(error.message || 'An unexpected error occurred');
     }
   }
   
@@ -90,7 +92,7 @@ const Markets = () => {
           const fetchedMarkets = await getData(`/markets/${user.id}`);          
           setMarkets(fetchedMarkets.data);
         } catch (err) {
-          setError(err.message);
+          setErrorServer(err.message);
         } finally {
           setLoading(false);
         }
@@ -108,7 +110,7 @@ const Markets = () => {
       <header className="flex mx-1 justify-between items-center">
         <Exitbtn />
 
-        <h1 className="w-52 text-2xl py-2 text-center shadow-xl rounded-lg">Add Market</h1>
+        <h1 className="w-52 text-2xl py-2 text-center shadow-xl rounded-lg">{t("market.h1")}</h1>
 
         <h2 className="text-xl font-lilita border-blue-500">{markets.length}/10</h2>
       </header>
@@ -130,21 +132,21 @@ const Markets = () => {
         <button 
           className='w-48 mt-6 p-2 mx-auto text-center text-lg border-4 border-gray-400 text-gray-400 rounded-md shadow-xl shadow-gray-400 font-lilita'
           onClick={handleVisibleCreate}
-        >Add a Market</button>
+        >{t("market.add")}</button>
  
       </article>
 
       <Modal isOpen={isVisibleCreate} handleVisible={handleVisibleCreate}>
         <form 
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-center items-center gap-5"
+          className="flex flex-col items-center "
         >
           <div className="flex flex-col gap-6">
             <div className='flex flex-col gap-2'>
               <input 
                 type="text" 
-                placeholder="Market Name"
-                {...register('marketName',{required: 'Market Name is required'})}
+                placeholder={t("market.modalCreate.input.placeholder")}
+                {...register('marketName',{required: t("market.modalCreate.input.required")})}
                 className="text-center text-lg border-b-2 shadow-lg duration-150 ease-in-out focus:outline-none focus:border-transparent"
                 style={{borderColor: selectedColor, boxShadow: `0 4px 6px -1px ${selectedColor}`}}
               />
@@ -162,26 +164,24 @@ const Markets = () => {
                   />
                 ))}
               </div>
-              {(!selectedColor && isSubmitted) && <span className='text-red-400 text-sm pl-2'>Please select a color</span>}
+              {(!selectedColor && isSubmitted) && <span className='text-red-400 text-sm pl-2'>{t("market.modalCreate.radioSelect")}</span>}
             </div>
             
-          </div>
-          
-          <div className='flex flex-col justify-center items-center gap-2'>
+          </div>        
+          <div className="flex flex-col justify-center items-center gap-2 mt-6">
             <button 
               type="submit"
-              className=" px-7 py-1 border-4 border-green-300 rounded-md font-lilita "
+              className="px-7 py-1 border-4 border-green-300 rounded-md font-lilita"
               style={{borderColor: selectedColor}}
               disabled={markets.length >= 10}
-            >ADD</button>
+            >{t("market.modalCreate.button")}</button>
             {
-              markets.length >= 10 && <p className='text-sm text-red-400'> no puedes agregar mas mercados</p>
+              markets.length >= 10 && <p className="text-red-400">{t("market.modalCreate.max")}</p>
             }
           </div>
 
           <div>
-            {error && <p className='text-red-400 text-sm'>{error}</p>}
-
+            {errorServer && <p className="text-red-400 text-sm mt-7">{errorServer}</p>}
           </div>
         </form>
         
@@ -189,20 +189,19 @@ const Markets = () => {
 
       <Modal isOpen={isVisibleDelete} handleVisible={handleVisibleDelete}>
         <div className='flex flex-col items-center justify-center gap-5'>
-          <p className='text-center text-lg'>Do you want to delete {selectedMarket && capitalizeWords(selectedMarket.name)}, which will delete all products under it?</p>
+          <p className='text-center text-lg'>{t("market.modalDelete.p.one")} {selectedMarket && capitalizeWords(selectedMarket.name)}, {t("market.modalDelete.p.two")}</p>
           <div className='flex gap-5'>
             <button 
               onClick={handleConfirmDelete}
               className='py-1 px-4 border-2 rounded-lg border-red-500 shadow-lg hover:shadow-red-500 duration-100 ease-in'
-            >Delete</button>
+            >{t("market.modalDelete.btnDelete")}</button>
             
             <button 
               onClick={handleVisibleDelete}
               className='py-1 px-4 border-2 rounded-lg border-green-500 shadow-lg hover:shadow-green-500 duration-100 ease-in'
-            >Cancel</button>
+            >{t("market.modalDelete.btnCancel")}</button>
           </div>
         </div>
-        
       </Modal>
     </main>
   )

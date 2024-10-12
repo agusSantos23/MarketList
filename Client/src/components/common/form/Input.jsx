@@ -63,7 +63,7 @@ const Input = ({
             className="absolute right-1 top-1/2 -translate-y-1/2 stroke-blue-400 cursor-pointer w-6"
           />
         </div>
-        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-sm'>{errors[id].message}</span>}
+        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-xs'>{errors[id].message}</span>}
       </div>
     );
   } else {
@@ -87,7 +87,7 @@ const Input = ({
           })}
           {...props}
         />
-        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-sm'>{errors[id].message}</span>}
+        {errors[id] && <span className='ml-1 pl-2 border-l-2 rounded-xl border-red-400 tracking-wide text-xs'>{errors[id].message}</span>}
       </div>
     );
   }

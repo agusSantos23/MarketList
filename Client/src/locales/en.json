@@ -55,10 +55,30 @@
       "logout": "Log Out"
     },
     "plus":{
-      "labels": "Etiquetas",
-      "markets": "Mercados"
+      "labels": "Labels",
+      "markets": "Markets"
     }
   },
-
+  "market":{
+    "h1":"Markets",
+    "add": "Add Market",
+    "modalCreate":{
+      "input": {
+        "placeholder":"Market Name",
+        "required":"Market Name is required"
+      },
+      "radioSelect":"Please select a color",
+      "button": "ADD",
+      "max": "You can't add more markets"
+    },
+    "modalDelete":{
+      "p": {
+        "one": "Do you want to delete",
+        "two": "which will delete all products under it?"
+      },
+      "btnDelete": "Delete",
+      "btnCancel": "Cancel"
+    }
+  },
   "footer": "Website created by"
 }

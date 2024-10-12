@@ -29,6 +29,22 @@ export const register = async ( req, res ) =>{
 
     const { password: _, ...userEnd } = newUser.dataValues;
 
+
+    const user = await User.findOne({ where: {email: loweredEmail} });
+
+    const token = await createdAccessToken({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    })
+  
+    res.cookie('tokenMarketList', token,{
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Strict',
+      maxAge: 24 * 60 * 60 * 1000
+    })
+
     res.status(201).json(userEnd);
 
   } catch (error) {    

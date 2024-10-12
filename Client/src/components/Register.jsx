@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 
 import Input from './common/form/Input.jsx';
 import Button from './common/form/Button.jsx';
+import { useState } from 'react';
 
 
 const Register = () => {
@@ -15,20 +16,21 @@ const Register = () => {
   const { t } = useTranslation()
   const { login } = useAuth()
 
+  const [errorServer, setErrorServer] = useState(null)
+
 
   const onSubmit = async (data) => {
     
     try {
       const response = await createData('/register', data)
-
-      login(response)
+      console.log(response);
+      login(response.data)
 
     } catch (error) {
       console.error('Error register:', error.message); 
+      setErrorServer(error.message || 'An unexpected error occurred');
     }
-
   }
-
 
   return (
     <form 
@@ -76,7 +78,7 @@ const Register = () => {
             compareWith="password"
             formValues={watch()}
           />
-          <div className='flex flex-col'>
+        <div className='flex flex-col gap-2'>
           <label className='flex justify-center items-center text-sm'>
             <input 
               type="checkbox" 
@@ -95,8 +97,9 @@ const Register = () => {
         </div>
         
         <Button content={t("auth.sections.register")}/>
-      </div>
 
+        {errorServer && <p className='text-red-400 text-sm mt-7'>{errorServer}</p>}
+      </div>
 
       <div className='w-7 h-7 bg-amber-200'></div>
     </form>
