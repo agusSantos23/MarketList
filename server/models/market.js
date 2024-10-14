@@ -11,7 +11,6 @@ const Market = sequelize.define('Market', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
   },
   color: {
     type: DataTypes.STRING,
@@ -28,7 +27,13 @@ const Market = sequelize.define('Market', {
     allowNull: false,
   }
 },{
-  freezeTableName: true
+  freezeTableName: true,
+  indexes: [
+    {
+      unique: true,
+      fields: ['userId', 'name'], 
+    },
+  ],
 })
 
 export default Market;

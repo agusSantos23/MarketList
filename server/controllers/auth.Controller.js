@@ -11,14 +11,14 @@ export const register = async ( req, res ) =>{
 
   const { username, email, password } = req.body;
 
-  if (!username || !email || !password) return res.status(400).json({ message: "All fields are required"})
+  if (!username || !email || !password) return res.status(400).json({ message: "ALL_FIELDS_REQUIRED"})
   
 
   try {
     const loweredEmail = email.toLowerCase();
     
     const userExists = await User.findOne({ where: { email: loweredEmail }});
-    if (userExists) return res.status(400).json({ message: "Email in use"})
+    if (userExists) return res.status(400).json({ message: "EMAIL_IN_USE"})
     
 
     const newUser = await User.create({
@@ -57,26 +57,25 @@ export const login = async ( req, res ) => {
 
   const { email, password } = req.body;
 
-  if ( !email || !password) return res.status(400).json({ message: "All fields are required"})
+  if ( !email || !password) return res.status(400).json({ message: "ALL_FIELDS_REQUIRED"})
   
 
   try {
     const loweredEmail = email.toLowerCase();
     
     const user = await User.findOne({ where: {email: loweredEmail} });
-    if (!user) return res.status(400).json({ message: "Incorrect credentials"})
 
-    
+    if (!user) return res.status(400).json({ message: "INCORRECT_CREDENTIALS"})
+
     const samePassword = await verifyPassword(password, user.password)
-
-    if (! samePassword ) return res.status(400).json({ message: "Incorrect credentials"})
+    
+    if (!samePassword) return res.status(400).json({ message: "INCORRECT_CREDENTIALS"})
 
     const token = await createdAccessToken({
       id: user.id,
       username: user.username,
       email: user.email,
     })
-
   
     res.cookie('tokenMarketList', token,{
       httpOnly: true,

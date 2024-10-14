@@ -80,7 +80,7 @@ const Lobby = () => {
           { isVisiblePopup && (
             
             <div className='flex flex-col justify-around items-center absolute right-8 bottom-8 w-36 h-24 text-xl bg-myWhite rounded-sm border-4 border-t-green-200 border-l-green-200 border-b-green-400 border-r-green-400 z-20'>
-              <Link>{t("lobby.plus.labels")}</Link>
+              <Link to="/labels">{t("lobby.plus.labels")}</Link>
               <div className='border-2 w-24 rounded-md border-green-300 shadow-md shadow-green-300'></div>
               <Link to="/markets">{t("lobby.plus.markets")}</Link>
             </div>
@@ -96,7 +96,7 @@ const Lobby = () => {
           >Manzana</h2>
 
           <span
-            className="absolute text-8xl -right-7 top-1/2 -translate-y-1/2 "
+            className="absolute text-8xl -right-7 top-1/2 -translate-y-1/2"
           >🍎</span>
 
         </div>

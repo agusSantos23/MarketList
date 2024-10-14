@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from "react"
 import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '../context/AuthContext.jsx'
@@ -106,13 +106,13 @@ const Markets = () => {
   if (loading) return <p>Loading...</p>; 
 
   return (
-    <main className="relative px-3 py-5 min-h-svh font-quicksand">
+    <main className="relative px-3 py-5 min-h-svh font-quicksand bg-myWhite">
       <header className="flex mx-1 justify-between items-center">
         <Exitbtn />
 
         <h1 className="w-52 text-2xl py-2 text-center shadow-xl rounded-lg">{t("market.h1")}</h1>
 
-        <h2 className="text-xl font-lilita border-blue-500">{markets.length}/10</h2>
+        <h2 className="text-xl font-lilita ">{markets.length}/10</h2>
       </header>
 
       <article className="px-3 mt-10 flex flex-col gap-5">

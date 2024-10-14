@@ -14,7 +14,12 @@ export const createMarket = async (req, res) => {
 
   try {
 
-    const existingMarket = await Market.findOne({ where: { name: marketNameLower } })
+    const existingMarket = await Market.findOne({ 
+      where: { 
+        name: marketNameLower, 
+        userId: userId
+      } 
+    })
 
     if (existingMarket) return res.status(400).json({ message: "Market with this name already exists." })
     

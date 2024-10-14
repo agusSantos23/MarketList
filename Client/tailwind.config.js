@@ -18,12 +18,19 @@ export default {
         "myBlack": "#212121"
       },
       animation:{
-        'fall': 'fall 3s ease-in-out infinite'
+        'fall': 'fall 3s ease-in-out infinite',
+        'open': 'open .5s ease-in-out',
       },
       keyframes:{
         "fall":{
-          '50%':{ transform: "translateY(30%) rotate(180deg)"}
-        }
+          '50%':{ transform: "translateY(30%)"}
+        },
+
+        "open":{
+          '0%': { maxHeight: '0', opacity: '0' },
+          '100%': { maxHeight: '800px', opacity: '1' }
+        },
+
       },
       boxShadow: {
         'lateral-orange': '-30px 0 30px -15px rgba(250, 145, 60, 0.5), 30px 0 30px -15px rgba(250, 145, 60, 0.5)',

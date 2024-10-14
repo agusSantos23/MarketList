@@ -30,7 +30,6 @@ const Modal = ({isOpen, handleVisible ,children}) => {
         {children}
       </div>
     </>
-    
   )
 }
 

@@ -17,7 +17,6 @@
       "paragraphTwo":{
         "h3": "¿Que puedo hacer en MarketList?",
         "p": "Crea y personaliza tu lista de productos y precios, asegurando que nunca olvides lo que necesitas y manteniendo el control de tus gastos."
-
       }
     }
   },
@@ -81,6 +80,12 @@
       "btnDelete": "Eliminar",
       "btnCancel": "Cancel"
     }
+  },
+  "errors": {
+    "ALL_FIELDS_REQUIRED": "Todos los campos son obligatorios",
+    "EMAIL_IN_USE": "Este correo ya esta en uso.",
+    "INCORRECT_CREDENTIALS": "Credenciales incorrectas",
+    "DEFAULT_ERROR":"Ha ocurrido un error. Por favor, inténtalo de nuevo."
   },
   "footer": "Pagina web creada por"
 }

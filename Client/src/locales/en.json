@@ -80,5 +80,11 @@
       "btnCancel": "Cancel"
     }
   },
+  "errors": {
+    "ALL_FIELDS_REQUIRED": "All fields are required",
+    "EMAIL_IN_USE": "This email is already in use.",
+    "INCORRECT_CREDENTIALS": "Incorrect credentials",
+    "DEFAULT_ERROR":"An error occurred. Please try again."
+  },
   "footer": "Website created by"
 }

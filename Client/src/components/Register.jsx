@@ -1,13 +1,13 @@
-
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-
-import { createData } from '../apiService.js';
-import { useAuth } from '../context/AuthContext.jsx';
-
-import Input from './common/form/Input.jsx';
-import Button from './common/form/Button.jsx';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+
+import { handleErrorResponse } from '../utils/utils.js'
+import { createData } from '../apiService.js'
+import { useAuth } from '../context/AuthContext.jsx'
+
+import Input from './common/form/Input.jsx'
+import Button from './common/form/Button.jsx'
 
 
 const Register = () => {
@@ -23,12 +23,10 @@ const Register = () => {
     
     try {
       const response = await createData('/register', data)
-      console.log(response);
       login(response.data)
-
     } catch (error) {
-      console.error('Error register:', error.message); 
-      setErrorServer(error.message || 'An unexpected error occurred');
+      console.error('Error register:', error); 
+      setErrorServer( handleErrorResponse(error, t) || 'An unexpected error occurred');
     }
   }
 

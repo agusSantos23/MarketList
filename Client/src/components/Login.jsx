@@ -1,12 +1,13 @@
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-
+import { handleErrorResponse } from '../utils/utils.js'
 import { createData } from '../apiService.js'
-import { useAuth } from '../context/AuthContext.jsx';
+import { useAuth } from '../context/AuthContext.jsx'
 
-import Input from './common/form/Input.jsx';
-import Button from './common/form/Button.jsx';
+import Input from './common/form/Input.jsx'
+import Button from './common/form/Button.jsx'
 
 const Login = () => {
   
@@ -14,13 +15,17 @@ const Login = () => {
   const { t } = useTranslation()
   const { login } = useAuth()
 
+  const [errorServer, setErrorServer] = useState(null)
+
+
   const onSubmit = async (data) => {
     try {
       const response = await createData('/login', data)
       login(response)
       
     } catch (error) {
-      console.error('Error register:', error.message); 
+      console.error('Error register:', error.message)
+      setErrorServer( handleErrorResponse(error, t) || 'An unexpected error occurred')
     }
   }
 
@@ -72,9 +77,9 @@ const Login = () => {
         </div>
         </div>
         
-      
         <Button content={t("auth.sections.login")}/>
 
+        {errorServer && <p className='text-red-400 text-sm mt-7'>{errorServer}</p>}
       </div>
 
 
