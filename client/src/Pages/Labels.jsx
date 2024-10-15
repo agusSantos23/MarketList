@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
 
 import LabelElement from "../components/elements/LabelElement.jsx"
 import Modal from "../components/Modal.jsx"
 import Exitbtn from "../components/common/Exitbtn.jsx"
+import EmojiPicker from "../components/EmojiPicker.jsx"
 
 const Labels = () => {
 
@@ -15,11 +16,19 @@ const Labels = () => {
 
   const [isVisibleCreate, setIsVisibleCreate] = useState(false)
 
+  const [selectedEmoji, setSelectedEmoji] = useState(null)
+
+
   const handleVisibleCreate = () => setIsVisibleCreate(!isVisibleCreate)
+  
+  
+  const handleEmojiSelect = (emoji) => {
+    setSelectedEmoji(emoji)
+    setValue("emoji", emoji)
+  };
 
   const onSubmit = async (data) => {
-    console.log(data);
-    
+    console.log(data)
   }
 
   return (
@@ -43,11 +52,13 @@ const Labels = () => {
 
       </article>
 
+
       <Modal isOpen={isVisibleCreate} handleVisible={handleVisibleCreate}> 
         <form 
+          className="flex flex-col justify-between items-center h-80 "
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className='flex flex-col gap-2'>
+          <div className="flex flex-col gap-2">
             <input 
               type="text" 
               placeholder={"Nombre de la Etiqueta"}
@@ -57,7 +68,12 @@ const Labels = () => {
             {errors.marketName && <span className='text-red-400 text-sm pl-2'>{errors.marketName.message}</span>}
           </div>
 
-          <div className="flex flex-col justify-center items-center gap-2 mt-6">
+          <EmojiPicker onEmojiSelect={handleEmojiSelect} emoji={selectedEmoji}/>
+
+          
+  
+
+          <div className="flex flex-col justify-center items-center gap-2">
             <button 
               type="submit"
               className="px-7 py-1 border-4 border-green-300 rounded-md font-lilita"
