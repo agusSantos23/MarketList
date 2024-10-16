@@ -47,31 +47,29 @@ const EmojiPicker = ({onEmojiSelect, emoji}) => {
     <div>
       <div 
         onClick={handleVisible} 
-        className="p-2 border rounded-md"
+        className="px-4 py-2  border-2  rounded-md shadow-xl shadow-gray-300"
       >
         Seleccionar Emoji {emoji || "🛒"}
       </div>
       {isVisible && (
-        
-
         <div>
           <div className="absolute top-14 left-1/2 -translate-x-1/2 w-11/12 h-4/6 z-10 overflow-y-auto bg-white border rounded-md shadow-lg">
             <div className="flex justify-around my-3">
-              <button 
-              className={selectedCategory === "food" ? "scale-125 duration-100 ease-in": undefined}
-              onClick={() => setSelectedCategory("food")}>
-                <img src={martiniSVG} alt="" />
-              </button>
-              <button 
-              className={selectedCategory === "faces" ? "scale-125 duration-100 ease-in": undefined}
-              onClick={() => setSelectedCategory("faces")}>
-                <img src={faceSVG} alt="" />
-              </button>
-              <button 
-              className={selectedCategory === "animals" ? "scale-125 duration-100 ease-in": undefined}
-              onClick={() => setSelectedCategory("animals")}>
-                <img src={crowSVG} alt="" />
-              </button>
+              <span 
+                className={selectedCategory === "food" ? "scale-125 duration-100 ease-in": undefined}
+                onClick={() => setSelectedCategory("food")}
+              ><img src={martiniSVG} alt="martini" /></span>
+
+              <span 
+                className={selectedCategory === "faces" ? "scale-125 duration-100 ease-in": undefined}
+                onClick={() => setSelectedCategory("faces")}
+              ><img src={faceSVG} alt="face" /></span>
+
+              <span 
+                className={selectedCategory === "animals" ? "scale-125 duration-100 ease-in": undefined}
+                onClick={() => setSelectedCategory("animals")}
+              ><img src={crowSVG} alt="crow" /></span>
+
             </div>
             <div className="p-2 grid grid-cols-6 gap-2">
               {emojis[selectedCategory].map((emoji, index) => (
@@ -85,7 +83,6 @@ const EmojiPicker = ({onEmojiSelect, emoji}) => {
               ))}
             </div>
           </div>
-
               
           <div 
             className="w-svw h-svh absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-black opacity-20"
@@ -101,7 +98,7 @@ const EmojiPicker = ({onEmojiSelect, emoji}) => {
 
 EmojiPicker.propTypes = {
   onEmojiSelect: PropTypes.func.isRequired, 
-  emoji: PropTypes.string.isRequired      
+  emoji: PropTypes.string      
 };
 
 export default EmojiPicker

@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
+import User from "./user.js";
 
 const Label = sequelize.define('Label', {
   id: {
@@ -14,17 +15,28 @@ const Label = sequelize.define('Label', {
   },
   emoji: { 
     type: DataTypes.STRING, 
-    allowNull: true 
+    allowNull: true,
+    defaultValue: '🍎'
   },
   userId: {
     type: DataTypes.UUID,
-    references: {
-      model: User,
-      key: 'id'
-    }
+    allowNull: false
   }
 },{
-  freezeTableName: true
-});
+  freezeTableName: true,
+  timestamps: false,
+  indexes: [
+    {
+      unique: true,
+      fields: ['userId', 'name'], 
+    },
+  ],
+})
+
+
+Label.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user',
+})
 
 export default Label;

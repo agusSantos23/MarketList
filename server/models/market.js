@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
+import User from "./user.js";
 
 const Market = sequelize.define('Market', {
 
@@ -28,12 +29,18 @@ const Market = sequelize.define('Market', {
   }
 },{
   freezeTableName: true,
+  timestamps: false,
   indexes: [
     {
       unique: true,
       fields: ['userId', 'name'], 
     },
   ],
+})
+
+Market.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user',
 })
 
 export default Market;

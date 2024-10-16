@@ -9,6 +9,7 @@ import sequelize from './config/db.js'
 
 import authRoutes from './routes/auth.Routes.js'
 import marketRoutes from './routes/market.Routes.js'
+import labelRoutes from './routes/label.Routes.js'
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.use(express.json());
 
 app.use(authRoutes)
 app.use('/markets',marketRoutes)
+app.use('/labels',labelRoutes)
+
 
 
 const startServer = async () => {

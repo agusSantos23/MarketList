@@ -19,28 +19,29 @@ const Markets = () => {
 
   const [markets, setMarkets] = useState([])
   const [loading, setLoading] = useState(true)
+  const [refresh, setRefresh] = useState(false);
   const [errorServer, setErrorServer] = useState(null)
 
   const [isVisibleDelete, setIsVisibleDelete] = useState(false)
   const [selectedMarket, setSelectedMarket] = useState(null)
 
   const [isVisibleCreate, setIsVisibleCreate] = useState(false)
-  const [selectedColor, setSelectedColor] = useState("")
+  const [selectedColor, setSelectedColor] = useState("#9ca3af")
   
-  const [refresh, setRefresh] = useState(false);
+
 
   
   const handleVisibleDelete = () => setIsVisibleDelete(!isVisibleDelete)
   const handleVisibleCreate = () => setIsVisibleCreate(!isVisibleCreate)
 
   const handleColorChange = (color) => {
-    setSelectedColor(color);
-    setValue('color', color);  
+    setSelectedColor(color)
+    setValue('color', color)
   };
   
   const handleDeleteMarket = (market) => {
-    setSelectedMarket(market); 
-    handleVisibleDelete(); 
+    setSelectedMarket(market)
+    handleVisibleDelete() 
   };
 
 
@@ -55,7 +56,7 @@ const Markets = () => {
       
         await createData('/markets/create', marketData)
         
-        handleVisibleCreate(!isVisibleCreate)
+        handleVisibleCreate()
         setSelectedColor("")
         setRefresh(!refresh)
         setErrorServer(null)
@@ -82,28 +83,26 @@ const Markets = () => {
       setErrorServer(error.message || 'An unexpected error occurred');
     }
   }
-  
 
   useEffect(() => {
-
     if (user) {
       const fetchMarkets = async () => {
         try {
-          const fetchedMarkets = await getData(`/markets/${user.id}`);          
-          setMarkets(fetchedMarkets.data);
-        } catch (err) {
-          setErrorServer(err.message);
+          const fetchedMarkets = await getData(`/markets/${user.id}`)          
+          setMarkets(fetchedMarkets.data)
+        } catch (error) {
+          setErrorServer(error.message)
         } finally {
-          setLoading(false);
+          setLoading(false)
         }
       };
       
-      fetchMarkets();
+      fetchMarkets()
     }
   },[user, refresh])
 
 
-  if (loading) return <p>Loading...</p>; 
+  if (loading) return <p>Loading...</p>
 
   return (
     <main className="relative px-3 py-5 min-h-svh font-quicksand bg-myWhite">
@@ -123,7 +122,6 @@ const Markets = () => {
               key={market.id} 
               name={capitalizeWords(market.name)} 
               colorHexa={`#${market.color}`} 
-              activated={isVisibleDelete} 
               setActivatedDelete={() => handleDeleteMarket(market)}
             />
           )
@@ -147,7 +145,7 @@ const Markets = () => {
                 type="text" 
                 placeholder={t("market.modalCreate.input.placeholder")}
                 {...register('marketName',{required: t("market.modalCreate.input.required")})}
-                className="text-center text-lg border-b-2 shadow-lg duration-150 ease-in-out focus:outline-none focus:border-transparent"
+                className="text-center text-lg px-3 py-1 border-b-2 shadow-lg duration-150 ease-in-out focus:outline-none focus:border-transparent"
                 style={{borderColor: selectedColor, boxShadow: `0 4px 6px -1px ${selectedColor}`}}
               />
               {errors.marketName && <span className='text-red-400 text-sm pl-2'>{errors.marketName.message}</span>}

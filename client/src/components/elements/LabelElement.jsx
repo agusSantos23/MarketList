@@ -7,7 +7,7 @@ import Deletebtn from "../common/Deletebtn.jsx";
 import arrowDownSVG from "../../assets/svg/common/arrowDown.svg"
 
 
-const LabelElement = ({setActivatedDelete}) => {
+const LabelElement = ({name,emoji,setActivatedDelete}) => {
   const [isOpen, setIsOpen] = useState(false); 
 
   const handleMenu = () => setIsOpen(!isOpen)
@@ -28,9 +28,9 @@ const LabelElement = ({setActivatedDelete}) => {
             className={`duration-300 ease-in-out ${isOpen && "rotate-180"}`}
           />
           
-          <h2 className="text-2xl text-myBlack">Manzanas</h2>
+          <h2 className="text-2xl text-myBlack">{name}</h2>
 
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-3xl">🍎</span>
+          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-3xl">{emoji}</span>
         </div>
       </div>
 
@@ -65,6 +65,8 @@ const LabelElement = ({setActivatedDelete}) => {
 }
 
 LabelElement.propTypes = {
+  name: PropTypes.string.isRequired,
+  emoji: PropTypes.string.isRequired,
   setActivatedDelete: PropTypes.func.isRequired,
 }
 
