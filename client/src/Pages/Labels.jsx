@@ -13,7 +13,7 @@ import { capitalizeWords } from "../utils/utils.js"
 
 const Labels = () => {
 
-  const { register, handleSubmit, setValue, formState: { errors  } } = useForm()
+  const { register, handleSubmit, setValue,reset, formState: { errors  } } = useForm()
   const { t } = useTranslation()
   const { user } = useAuth()
 
@@ -62,13 +62,14 @@ const Labels = () => {
 
         await createData('/labels/create', labelData)
 
+        reset()
         setRefresh(!refresh)
         setSelectedEmoji(null)
         setErrorServer(null)
         handleVisibleCreate()
-
         
       }
+
     } catch (error) {
       console.error(error);
       setErrorServer(error.message || 'An unexpected error occurred');
@@ -87,12 +88,13 @@ const Labels = () => {
       }
     } catch (error) {
       console.error('Error deleting market:', error.message)
-      setErrorServer(error.message || 'An unexpected error occurred');
+      setErrorServer(error.message || 'An unexpected error occurred')
     }
   }
 
 
   useEffect(()=>{
+    
     if(user){
 
       const fetchLabels = async () => {
@@ -105,14 +107,12 @@ const Labels = () => {
           setLoading(false)
         }
       }
-
       fetchLabels()
     }
 
   },[user,refresh])
 
   if (loading) return <p>Loading...</p>
-
 
   return (
     <main className="relative px-3 py-5 min-h-svh font-quicksand bg-myWhite">
@@ -121,7 +121,7 @@ const Labels = () => {
 
         <h1 className="w-52 text-2xl py-2 text-center shadow-xl rounded-lg">Labels</h1>
 
-        <h2 className="text-xl font-lilita">{3}/150</h2>
+        <h2 className="text-xl font-lilita">{labels.length}/150</h2>
       </header>
 
       <article className="px-3 mt-10 flex flex-col gap-5">
@@ -130,6 +130,7 @@ const Labels = () => {
           return(
             <LabelElement 
               key={label.id}
+              id={label.id}
               name={capitalizeWords(label.name)}
               emoji={label.emoji}
               setActivatedDelete={() => handleDeleteLabel(label)}
@@ -170,10 +171,11 @@ const Labels = () => {
           <div className="flex flex-col justify-center items-center gap-2">
             <button 
               type="submit"
+              disabled={labels.length >= 150}
               className="px-7 py-1 border-4 border-green-300 rounded-md font-lilita"
             >{t("market.modalCreate.button")}</button>
             {
-              //markets.length >= 10 && <p className="text-red-400">{t("market.modalCreate.max")}</p>
+              labels.length >= 150 && <p className="text-red-400">{t("market.modalCreate.max")}</p>
             }
           </div>
 

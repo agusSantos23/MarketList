@@ -35,9 +35,9 @@ app.use('/labels',labelRoutes)
 const startServer = async () => {
 
   try {
-    await connectDB();
+    await connectDB()
     await sequelize.sync({ alter: false })
-    console.log("Base de datos sincronizada correctamente");
+    console.log("Base de datos sincronizada correctamente")
     
 
     app.listen(process.env.PORT, () => {
@@ -47,6 +47,8 @@ const startServer = async () => {
     console.log("Error server:", error);
   }
 };
+
+
 
 
 

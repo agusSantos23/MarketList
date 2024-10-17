@@ -26,6 +26,11 @@ const Market = sequelize.define('Market', {
   userId: {
     type: DataTypes.UUID,
     allowNull: false,
+    onDelete: 'CASCADE',
+    references: {
+      model: User,
+      key: 'id',
+    },
   }
 },{
   freezeTableName: true,
@@ -38,9 +43,7 @@ const Market = sequelize.define('Market', {
   ],
 })
 
-Market.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'user',
-})
+
+
 
 export default Market;

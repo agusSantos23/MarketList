@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) =>{
     const authenticate = async () => {
       
       if (!user) {
-        const userAuth = await checkAuth();        
+        const userAuth = await checkAuth()
+         
         setUser(userAuth)
       }
 

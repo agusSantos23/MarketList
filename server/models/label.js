@@ -20,7 +20,12 @@ const Label = sequelize.define('Label', {
   },
   userId: {
     type: DataTypes.UUID,
-    allowNull: false
+    allowNull: false,
+    onDelete: 'CASCADE',
+    references: {
+      model: User,
+      key: 'id',
+    },
   }
 },{
   freezeTableName: true,
@@ -34,9 +39,5 @@ const Label = sequelize.define('Label', {
 })
 
 
-Label.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'user',
-})
 
 export default Label;

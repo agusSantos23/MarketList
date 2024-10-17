@@ -1,5 +1,8 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { DataTypes } from "sequelize"
+import sequelize from "../config/db.js"
+
+import Label from "./label.js"
+import Market from "./market.js"
 
 const Product = sequelize.define('Product',{
 
@@ -37,6 +40,7 @@ const Product = sequelize.define('Product',{
 
   marketId: {
     type: DataTypes.UUID,
+    onDelete: 'CASCADE',
     references: {
       model: Market,
       key: 'id'
@@ -44,6 +48,7 @@ const Product = sequelize.define('Product',{
   },
   labelId: {
     type: DataTypes.UUID,
+    onDelete: 'CASCADE',
     references: {
       model: Label,
       key: 'id'
@@ -51,6 +56,16 @@ const Product = sequelize.define('Product',{
   }
 },{
   freezeTableName: true
+})
+
+Product.belongsTo(Label, {
+  foreignKey: 'labelId',
+  as: 'label'
+})
+
+Product.belongsTo(Market, {
+  foreignKey: 'marketId',
+  as: 'market'
 })
 
 export default Product

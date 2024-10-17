@@ -20,8 +20,8 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await createData('/login', data)
-      login(response)
+      const response = await createData('/login', data)      
+      login(response.data)
       
     } catch (error) {
       console.error('Error register:', error.message)

@@ -22,22 +22,14 @@ const User = sequelize.define('User',{
     type: DataTypes.STRING,
     allowNull:false
   },
-  marketCount: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-    validate:{
-      isInt: true,
-      max:10
-    }
-  },
   createdAt:{
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
     allowNull:false,
   }
 },{
-  freezeTableName: true
+  freezeTableName: true,
+  timestamps: false
 })
 
 export default User;

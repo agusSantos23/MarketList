@@ -23,6 +23,7 @@ User.hasMany(Market, {
 
 Market.belongsTo(User, {
   foreignKey: 'userId',
+  as: 'user',
   onDelete: 'CASCADE'
 });
 
@@ -33,11 +34,13 @@ Market.hasMany(Product, {
 
 Product.belongsTo(Market, {
   foreignKey: 'marketId',
+  as: 'market',
   onDelete: 'CASCADE'
 });
 
 User.hasMany(Label, {
   foreignKey: 'userId',
+  as: 'user',
   onDelete: 'CASCADE'
 });
 
@@ -48,7 +51,7 @@ Label.belongsTo(User, {
 
 Product.belongsTo(Label, {
   foreignKey: 'labelId',
-  onDelete: 'SET NULL'
+  onDelete: 'CASCADE'
 });
 
 ShoppingList.hasMany(ShoppingListProduct, {

@@ -1,5 +1,6 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { DataTypes } from "sequelize"
+import sequelize from "../config/db.js"
+import User from './user.js'
 
 const ShoppingList = sequelize.define('ShoppingList', {
   id: {
@@ -7,8 +8,6 @@ const ShoppingList = sequelize.define('ShoppingList', {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true
   },
-
-
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,
@@ -18,7 +17,6 @@ const ShoppingList = sequelize.define('ShoppingList', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
-
   userId: {
     type: DataTypes.UUID,
     references: {

@@ -1,4 +1,64 @@
 import Label from '../models/label.js'
+import Product from '../models/product.js'
+import Market from '../models/market.js'
+
+
+
+export const getLabel = async (req, res) => {
+
+  const userId = req.params.userId
+
+  try {
+    const labels = await Label.findAll({
+      where: {userId: userId},
+      attributes:['id','name','emoji']
+    }); 
+
+    const labelDataLabels = labels.map(label => label.dataValues)
+
+    res.status(200).json(labelDataLabels)
+    
+  } catch (error) {
+    console.error(error)
+
+    res.status(500).json({ message: 'Error retrieving markets', error: error.message })
+
+  }
+
+}
+
+export const getLabelElement = async (req, res) =>{
+
+  const labelId = req.params.labelId
+
+  try {
+    
+    const products = await Product.findAll({
+      where: {
+        labelId: labelId 
+      },
+      include: [
+        {
+          model: Market,
+          as: 'market',
+          attributes: ['id', 'name', 'color'], 
+        }
+      ],
+      attributes: ['id', 'price', 'quantity', 'brand'], 
+    });
+
+    //console.log(products);
+    
+    //res.status(200).json({products})
+
+  } catch (error) {
+    console.error(error)
+
+    res.status(500).json({ message: 'Error retrieving markets', error: error.message })
+
+  }
+}
+
 
 export const createLabel = async (req, res) => {
 
@@ -35,29 +95,6 @@ export const createLabel = async (req, res) => {
     
   }
 
-
-}
-
-export const getLabel = async (req, res) => {
-
-  const userId = req.params.userId
-
-  try {
-    const labels = await Label.findAll({
-      where: {userId: userId},
-      attributes:['id','name','emoji']
-    }); 
-
-    const labelDataLabels = labels.map(label => label.dataValues)
-
-    res.status(200).json(labelDataLabels)
-    
-  } catch (error) {
-    console.error(error)
-
-    res.status(500).json({ message: 'Error retrieving markets', error: error.message })
-
-  }
 
 }
 

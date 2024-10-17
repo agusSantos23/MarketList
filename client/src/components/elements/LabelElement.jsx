@@ -1,16 +1,49 @@
-import { useState } from "react";
-import PropTypes from 'prop-types';
+import { useEffect, useState } from "react"
+import PropTypes from 'prop-types'
 
-import CheckBoxList from "../common/form/CheckBoxList.jsx";
-import Deletebtn from "../common/Deletebtn.jsx";
+import CheckBoxList from "../common/form/CheckBoxList.jsx"
+import Deletebtn from "../common/Deletebtn.jsx"
 
 import arrowDownSVG from "../../assets/svg/common/arrowDown.svg"
+import { getData } from "../../apiService.js"
 
 
-const LabelElement = ({name,emoji,setActivatedDelete}) => {
-  const [isOpen, setIsOpen] = useState(false); 
+const LabelElement = ({id,name,emoji,setActivatedDelete}) => {
+
+  const [labelElements, setLabelElements] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [errorServer, setErrorServer] = useState(null)
+
+
+  const [isOpen, setIsOpen] = useState(false)
+
 
   const handleMenu = () => setIsOpen(!isOpen)
+
+  useEffect(()=>{
+    
+    if (id) {
+      
+      const fetchLabelElements = async () => {
+        try {
+          const fetchedLabelElements = await getData(`/labels/labelElements/${id}`)
+          setLabelElements(fetchedLabelElements.data)
+          
+        } catch (error) {
+          setErrorServer(error.message)
+        }finally{
+          setLoading(false)
+        }
+      }
+
+      fetchLabelElements()
+    }
+
+  },[id])
+
+  if (loading) return <p>Loading...</p>
+
+  if (errorServer) return <p>Error Server 500</p>
 
   return (
     <div> 
@@ -39,24 +72,29 @@ const LabelElement = ({name,emoji,setActivatedDelete}) => {
         {isOpen && ( 
 
           <div className={`${isOpen ? 'block' : 'hidden'} mt-4 flex flex-col gap-3`}> 
+            
+            {labelElements.map((labelElement)=>{
+              return(
+                <div 
+                  key={labelElement.id}
+                  className="flex items-center gap-5 ml-5"
+                >
+                  <CheckBoxList/>
 
-            <div className="flex items-center gap-5 ml-5">
-              <CheckBoxList/>
-
-              <div className="flex flex-col gap-2 w-full px-4 py-2 border-2 border-t-green-400 border-l-green-400 border-b-green-500 border-r-green-500 border-gray-300 rounded-md shadow-md shadow-green-200">
-
-                <div className="flex justify-between">
-                  <h3>Mercadona</h3>
-                  <span className="font-bold text-green-500">2 €</span>
+                  <div className="flex flex-col gap-2 w-full px-4 py-2 border-2 border-t-green-400 border-l-green-400 border-b-green-500 border-r-green-500 border-gray-300 rounded-md shadow-md shadow-green-200">
+                    <div className="flex justify-between">
+                      <h3>{labelElement.name}</h3>
+                      <span className="font-bold text-green-500">2 €</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm">1/2 Kg</span>
+                      <span className="text-sm">Manzanero</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">1/2 Kg</span>
-                  <span className="text-sm">Manzanero</span>
-                </div>
-              </div>
-            </div>
-
-
+              )
+            })}
+            
           </div>
         )}
       </div>
@@ -65,6 +103,7 @@ const LabelElement = ({name,emoji,setActivatedDelete}) => {
 }
 
 LabelElement.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   emoji: PropTypes.string.isRequired,
   setActivatedDelete: PropTypes.func.isRequired,

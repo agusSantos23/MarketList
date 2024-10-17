@@ -13,7 +13,7 @@ import CheckRadio from "../components/common/form/CheckRadio.jsx"
 
 const Markets = () => {
 
-  const { register, handleSubmit, setValue, formState: { errors, isSubmitted  } } = useForm()
+  const { register, handleSubmit, setValue,reset, formState: { errors, isSubmitted  } } = useForm()
   const { t } = useTranslation()
   const { user } = useAuth()
 
@@ -56,10 +56,12 @@ const Markets = () => {
       
         await createData('/markets/create', marketData)
         
-        handleVisibleCreate()
+        reset()
         setSelectedColor("")
         setRefresh(!refresh)
         setErrorServer(null)
+        handleVisibleCreate()
+
       }
 
     } catch (error) {

@@ -1,5 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { DataTypes } from "sequelize"
+import sequelize from "../config/db.js"
+import ShoppingList from './shoppingList.js'
+import Product from './product.js'
 
 const ShoppingListProducts = sequelize.define('ShoppingListProducts', {
   id: {
