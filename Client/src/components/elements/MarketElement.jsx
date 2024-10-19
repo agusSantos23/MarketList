@@ -26,7 +26,7 @@ const MarketElement = ({name, colorHexa, setActivatedDelete}) => {
     <div className="flex items-center gap-6">
       <Deletebtn width="30px" setActivated={setActivatedDelete}/>
 
-      <Link to={`/mercadona?market=${name}`}>
+      <Link to={`/product?market=${name}`}>
         <div 
           className={`w-64 py-3 border-4 rounded-md`}
           style={{

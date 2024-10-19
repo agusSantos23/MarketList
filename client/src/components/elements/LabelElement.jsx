@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import PropTypes from 'prop-types'
+import { getData } from "../../apiService.js"
 
 import CheckBoxList from "../common/form/CheckBoxList.jsx"
 import Deletebtn from "../common/Deletebtn.jsx"
 
 import arrowDownSVG from "../../assets/svg/common/arrowDown.svg"
-import { getData } from "../../apiService.js"
 
 
 const LabelElement = ({id,name,emoji,setActivatedDelete}) => {
@@ -49,7 +49,7 @@ const LabelElement = ({id,name,emoji,setActivatedDelete}) => {
     <div> 
       <div className="flex gap-5 items-center">
 
-        <Deletebtn width="38px" setActivated={setActivatedDelete}/>
+        <Deletebtn width="30px" setActivated={setActivatedDelete}/>
 
         <div
           onClick={handleMenu}
@@ -61,7 +61,7 @@ const LabelElement = ({id,name,emoji,setActivatedDelete}) => {
             className={`duration-300 ease-in-out ${isOpen && "rotate-180"}`}
           />
           
-          <h2 className="text-2xl text-myBlack">{name}</h2>
+          <h3 className="text-2xl text-myBlack">{name}</h3>
 
           <span className="absolute right-2 top-1/2 -translate-y-1/2 text-3xl">{emoji}</span>
         </div>
@@ -71,7 +71,7 @@ const LabelElement = ({id,name,emoji,setActivatedDelete}) => {
 
         {isOpen && ( 
 
-          <div className={`${isOpen ? 'block' : 'hidden'} mt-4 flex flex-col gap-3`}> 
+          <div className={`${isOpen ? "block" : "hidden"} mt-4 flex flex-col gap-3`}> 
             
             {labelElements.map((labelElement)=>{
               return(

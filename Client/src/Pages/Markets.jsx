@@ -27,8 +27,6 @@ const Markets = () => {
 
   const [isVisibleCreate, setIsVisibleCreate] = useState(false)
   const [selectedColor, setSelectedColor] = useState("#9ca3af")
-  
-
 
   
   const handleVisibleDelete = () => setIsVisibleDelete(!isVisibleDelete)

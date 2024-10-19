@@ -13,7 +13,7 @@ import { capitalizeWords } from "../utils/utils.js"
 
 const Labels = () => {
 
-  const { register, handleSubmit, setValue,reset, formState: { errors  } } = useForm()
+  const { register, handleSubmit, setValue,reset} = useForm()
   const { t } = useTranslation()
   const { user } = useAuth()
 
@@ -158,7 +158,6 @@ const Labels = () => {
               {...register('labelName',{required: t("market.modalCreate.input.required")})}
               className="text-center text-lg px-3 py-1 border-b-2 shadow-lg shadow-gray-400 duration-150 ease-in-out focus:outline-none focus:border-transparent"
               />
-            {errors.marketName && <span className='text-red-400 text-sm pl-2'>{errors.marketName.message}</span>}
           </div>
 
           <EmojiPicker onEmojiSelect={handleEmojiSelect} emoji={selectedEmoji}/>
@@ -173,7 +172,7 @@ const Labels = () => {
               type="submit"
               disabled={labels.length >= 150}
               className="px-7 py-1 border-4 border-green-300 rounded-md font-lilita"
-            >{t("market.modalCreate.button")}</button>
+            >ADD</button>
             {
               labels.length >= 150 && <p className="text-red-400">{t("market.modalCreate.max")}</p>
             }
