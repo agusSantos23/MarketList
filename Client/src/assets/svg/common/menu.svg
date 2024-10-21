@@ -2,13 +2,13 @@
     viewBox="0 0 175 170" xml:space="preserve">
 
     <g>
-        <path d="M0 10 L175 10 L175 40 L0 40 Z" fill="none" stroke="#c9e0fa" stroke-width="8"/> 
-        <path d="M0 40 L175 40 L175 10" fill="none" stroke="#83c0fc" stroke-width="8"/> 
+        <path d="M0 10 L175 10 L175 40 L0 40 Z" fill="none" stroke="#92c4fc" stroke-width="6"/> 
+        <path d="M0 40 L175 40 L175 10" fill="none" stroke="#92c4fc" stroke-width="6"/> 
 
-        <path d="M0 70 L175 70 L175 100 L0 100 Z" fill="none" stroke="#c9e0fa" stroke-width="8"/>
-        <path d="M0 100 L175 100 L175 70" fill="none" stroke="#83c0fc" stroke-width="8"/> 
-
-        <path d="M0 130 L175 130 L175 160 L0 160 Z" fill="none" stroke="#c9e0fa" stroke-width="8"/> 
-        <path d="M0 160 L175 160 L175 130" fill="none" stroke="#83c0fa" stroke-width="8"/>
+        <path d="M0 70 L175 70 L175 100 L0 100 Z" fill="none" stroke="#92c4fc" stroke-width="6"/>
+        <path d="M0 100 L175 100 L175 70" fill="none" stroke="#92c4fc" stroke-width="6"/> 
+        
+        <path d="M0 130 L175 130 L175 160 L0 160 Z" fill="none" stroke="#92c4fc" stroke-width="6"/> 
+        <path d="M0 160 L175 160 L175 130" fill="none" stroke="#92c4fc" stroke-width="6"/>
     </g>
 </svg>
